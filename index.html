@@ -1,87 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tecwee | Professional IT Solutions</title>
+  <meta name="description" content="Modern IT solutions for forward-thinking businesses. Setup, security, networking, support and more." />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
 </head>
-
 <body>
 
-
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-    <div class="nav-logo">
-      <a href="index.html">
-        <span class="logo-bracket">[</span>
-        <span class="logo-text">Tecwee</span>
-        <span class="logo-bracket">]</span>
-      </a>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="nav-link active">Home</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="services.html" class="nav-link">Services</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-      <li><a href="login.html" class="nav-link nav-btn">Login</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+    <div class="container">
+      <a href="index.html" class="nav-logo">Tecwee</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-secondary">Sign in</a>
+        <a href="contact.html" class="btn btn-primary">Get started</a>
+      </div>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Simplify your IT <br> <span class="accent">Expand your reach.</span>
-      </h1>
-      <p class="hero-desc">
-        Modern technology solutions for forward-thinking businesses. We handle the tech so you can focus on growth.
-      </p>
-      <div class="hero-btns">
-        <a href="services.html" class="btn btn-primary">
-          <span>Get Started</span>
-        </a>
-        <a href="contact.html" class="btn btn-outline">Learn More</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="tag"><span class="tag-dot"></span>Trusted IT Partner</span>
+      </div>
+      <h1 class="hero-title">Simplify your IT,<br><span class="accent">expand your reach.</span></h1>
+      <p class="hero-desc">Modern technology solutions for forward-thinking businesses. We handle the tech so you can focus on growth.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg">Get started</a>
+        <a href="services.html" class="btn btn-secondary btn-lg">View services</a>
+      </div>
+      <div class="hero-img reveal">
+        <!-- Dashboard mockup -->
+      <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- Background -->
+        <rect width="960" height="540" fill="#f5f5f5"/>
+        <!-- Sidebar -->
+        <rect x="0" y="0" width="180" height="540" fill="#ffffff"/>
+        <rect x="16" y="24" width="80" height="12" rx="6" fill="#0a0a0a"/>
+        <rect x="16" y="72" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <rect x="16" y="96" width="148" height="10" rx="5" fill="#0a0a0a" opacity="0.08"/>
+        <rect x="16" y="120" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <rect x="16" y="144" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <rect x="16" y="168" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <rect x="16" y="200" width="50" height="8" rx="4" fill="#a0a0a0"/>
+        <rect x="16" y="220" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <rect x="16" y="244" width="148" height="10" rx="5" fill="#e8e8e8"/>
+        <!-- Top bar -->
+        <rect x="180" y="0" width="780" height="52" fill="#ffffff"/>
+        <rect x="200" y="18" width="140" height="16" rx="8" fill="#f5f5f5"/>
+        <circle cx="900" cy="26" r="14" fill="#e8e8e8"/>
+        <circle cx="864" cy="26" r="14" fill="#e8e8e8"/>
+        <!-- Stat cards -->
+        <rect x="200" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
+        <rect x="220" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
+        <rect x="220" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
+        <rect x="220" y="136" width="50" height="8" rx="4" fill="#16a34a" opacity="0.7"/>
+
+        <rect x="382" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
+        <rect x="402" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
+        <rect x="402" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
+        <rect x="402" y="136" width="50" height="8" rx="4" fill="#16a34a" opacity="0.7"/>
+
+        <rect x="564" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
+        <rect x="584" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
+        <rect x="584" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
+        <rect x="584" y="136" width="50" height="8" rx="4" fill="#a0a0a0" opacity="0.5"/>
+
+        <rect x="746" y="72" width="166" height="90" rx="10" fill="#0a0a0a"/>
+        <rect x="766" y="90" width="60" height="9" rx="4" fill="#ffffff" opacity="0.4"/>
+        <rect x="766" y="110" width="90" height="16" rx="6" fill="#ffffff"/>
+        <rect x="766" y="136" width="50" height="8" rx="4" fill="#ffffff" opacity="0.4"/>
+
+        <!-- Chart area -->
+        <rect x="200" y="178" width="530" height="200" rx="10" fill="#ffffff"/>
+        <rect x="220" y="196" width="100" height="11" rx="5" fill="#0a0a0a"/>
+        <rect x="220" y="216" width="60" height="8" rx="4" fill="#a0a0a0"/>
+        <!-- Chart bars -->
+        <rect x="240" y="310" width="28" height="50" rx="4" fill="#e8e8e8"/>
+        <rect x="284" y="280" width="28" height="80" rx="4" fill="#e8e8e8"/>
+        <rect x="328" y="260" width="28" height="100" rx="4" fill="#0a0a0a"/>
+        <rect x="372" y="290" width="28" height="70" rx="4" fill="#e8e8e8"/>
+        <rect x="416" y="270" width="28" height="90" rx="4" fill="#e8e8e8"/>
+        <rect x="460" y="250" width="28" height="110" rx="4" fill="#0a0a0a"/>
+        <rect x="504" y="285" width="28" height="75" rx="4" fill="#e8e8e8"/>
+        <rect x="548" y="265" width="28" height="95" rx="4" fill="#e8e8e8"/>
+        <rect x="592" y="240" width="28" height="120" rx="4" fill="#0a0a0a"/>
+        <rect x="636" y="270" width="28" height="90" rx="4" fill="#e8e8e8"/>
+        <!-- Right panel -->
+        <rect x="746" y="178" width="166" height="200" rx="10" fill="#ffffff"/>
+        <rect x="766" y="196" width="80" height="10" rx="5" fill="#0a0a0a"/>
+        <rect x="766" y="220" width="126" height="1" fill="#e8e8e8"/>
+        <rect x="766" y="234" width="100" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="766" y="254" width="80" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="766" y="274" width="110" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="766" y="294" width="70" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="766" y="314" width="90" height="8" rx="4" fill="#e8e8e8"/>
+        <!-- Bottom row -->
+        <rect x="200" y="394" width="340" height="120" rx="10" fill="#ffffff"/>
+        <rect x="220" y="412" width="100" height="10" rx="5" fill="#0a0a0a"/>
+        <rect x="220" y="432" width="200" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="220" y="450" width="160" height="8" rx="4" fill="#e8e8e8"/>
+        <rect x="220" y="468" width="180" height="8" rx="4" fill="#e8e8e8"/>
+
+        <rect x="556" y="394" width="356" height="120" rx="10" fill="#ffffff"/>
+        <rect x="576" y="412" width="100" height="10" rx="5" fill="#0a0a0a"/>
+        <rect x="576" y="434" width="60" height="24" rx="6" fill="#f5f5f5"/>
+        <rect x="646" y="434" width="60" height="24" rx="6" fill="#f5f5f5"/>
+        <rect x="716" y="434" width="60" height="24" rx="6" fill="#0a0a0a"/>
+      </svg>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <span class="logo-bracket">[</span>
-            <span class="logo-text">Tecwee</span>
-            <span class="logo-bracket">]</span>
-          </div>
-          <p class="footer-tagline">Empowering growth through tech.</p>
+  <!-- LOGOS -->
+  <section class="logos">
+    <div class="container">
+      <p class="logos-label">Trusted by growing businesses</p>
+      <div class="logos-strip">
+        <span class="logo-item">Acme Corp</span>
+        <span class="logo-item">GlobalTech</span>
+        <span class="logo-item">NexaFlow</span>
+        <span class="logo-item">Vertex Ltd</span>
+        <span class="logo-item">PulseIO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Why Tecwee</span>
+        <h2 class="section-title">Everything your business needs</h2>
+        <p class="section-desc">From setup to security, we deliver reliable IT support that keeps your team productive and your data safe.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast Response</h3>
+          <p>Average 15-minute response time for critical issues — remote or on-site.</p>
         </div>
-        <div class="footer-socials">
-          <a href="#" class="social-link" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Twitter">
-            <svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.849-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849s.012-3.584.07-4.849c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.28-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🔐</div>
+          <h3>Enterprise-Grade Security</h3>
+          <p>State-of-the-art protection including encryption, firewall, and compliance.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🌐</div>
+          <h3>Network Expertise</h3>
+          <p>Stable, fast, and secure connectivity across your entire office environment.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💾</div>
+          <h3>Data Backup & Recovery</h3>
+          <p>Automated backups and fast recovery so you never lose important business data.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🖥️</div>
+          <h3>System Setup</h3>
+          <p>Clean installs, driver updates, user management, and disk organisation.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🆘</div>
+          <h3>Remote Support</h3>
+          <p>Instant remote assistance — no waiting for a technician to arrive on-site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Clients served</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-num">99%</div>
+          <div class="stat-label">Uptime delivered</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-num">15m</div>
+          <div class="stat-label">Avg. response time</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">Year established</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="steps">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">How it works</span>
+        <h2 class="section-title">Simple, fast, effective</h2>
+        <p class="section-desc">Getting your IT sorted with Tecwee is straightforward — three steps and you're covered.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-item reveal">
+          <p class="step-num">01</p>
+          <h3>Get in touch</h3>
+          <p>Tell us what you need. Whether it's a one-off fix or ongoing support, we'll listen and advise.</p>
+        </div>
+        <div class="step-item reveal">
+          <p class="step-num">02</p>
+          <h3>We assess & plan</h3>
+          <p>Our team reviews your environment, identifies risks, and presents a clear action plan.</p>
+        </div>
+        <div class="step-item reveal">
+          <p class="step-num">03</p>
+          <h3>We deliver & support</h3>
+          <p>We execute the work, then stay available for ongoing monitoring and rapid response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <span class="section-eyebrow">Testimonials</span>
+        <h2 class="section-title">Trusted by industry leaders</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">"Tecwee resolved our network issues within an hour. Their team is professional, fast, and genuinely cares about keeping our business running."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JB</div>
+            <div>
+              <div class="author-name">James B.</div>
+              <div class="author-role">Operations Manager</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">"We switched to Tecwee for all our IT needs and haven't looked back. Setup, security, and backup — all handled professionally and on time."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div>
+              <div class="author-name">Sarah M.</div>
+              <div class="author-role">Marketing Director</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-title">Ready to simplify your IT?</h2>
+        <p class="cta-desc">Talk to our team today and get a free consultation for your business needs.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-white btn-lg">Get started</a>
+          <a href="services.html" class="btn btn-dark-outline btn-lg">View services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Tecwee</div>
+          <p class="footer-brand-desc">Professional IT solutions for businesses of all sizes. Reliable, fast, and always available.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html">System Setup</a>
+            <a href="services.html">Security</a>
+            <a href="services.html">Networking</a>
+            <a href="services.html">Data Backup</a>
+            <a href="services.html">Remote Support</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Client Portal</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <div class="footer-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Tecwee. All rights reserved.</p>
+        <p class="footer-copy">© 2026 Tecwee. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Instagram</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <script src="animations.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>
