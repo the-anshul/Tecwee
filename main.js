@@ -133,8 +133,12 @@
       const alpha = 0.08 + depth * 0.55;
       const size = p.size * proj.scale * 0.5;
 
+      const s = Math.max(0.5, size * 1.6);
       ctx.beginPath();
-      ctx.arc(proj.x, proj.y, Math.max(0.3, size), 0, Math.PI * 2);
+      ctx.moveTo(proj.x, proj.y - s);
+      ctx.lineTo(proj.x + s * 0.866, proj.y + s * 0.5);
+      ctx.lineTo(proj.x - s * 0.866, proj.y + s * 0.5);
+      ctx.closePath();
       ctx.fillStyle = `rgba(10,10,10,${alpha.toFixed(2)})`;
       ctx.fill();
     }
