@@ -15,109 +15,31 @@
       <a href="index.html" class="nav-logo">Tecwee</a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html" class="nav-link">Company</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="login.html" class="btn btn-secondary">Sign in</a>
+        <a href="login.html" class="btn btn-ghost">Sign in</a>
         <a href="contact.html" class="btn btn-primary">Get started</a>
       </div>
       <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-eyebrow">
-        <span class="tag"><span class="tag-dot"></span>Trusted IT Partner</span>
-      </div>
-      <h1 class="hero-title">Simplify your IT,<br><span class="accent">expand your reach.</span></h1>
-      <p class="hero-desc">Modern technology solutions for forward-thinking businesses. We handle the tech so you can focus on growth.</p>
-      <div class="hero-actions">
+  <!-- HERO — Central style: full viewport, left text, particle canvas -->
+  <section class="hero-central" id="home">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-central-content">
+      <h1 class="hero-central-title">Simplify<br>your IT.</h1>
+      <p class="hero-central-sub">Run your IT, all in one place.</p>
+    </div>
+    <div class="hero-central-bottom">
+      <p class="hero-central-desc">Modern technology solutions for forward-thinking businesses. We handle the tech so you can focus on growth.</p>
+      <div class="hero-central-actions">
         <a href="contact.html" class="btn btn-primary btn-lg">Get started</a>
         <a href="services.html" class="btn btn-secondary btn-lg">View services</a>
-      </div>
-      <div class="hero-img reveal">
-        <!-- Dashboard mockup -->
-      <svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-        <!-- Background -->
-        <rect width="960" height="540" fill="#f5f5f5"/>
-        <!-- Sidebar -->
-        <rect x="0" y="0" width="180" height="540" fill="#ffffff"/>
-        <rect x="16" y="24" width="80" height="12" rx="6" fill="#0a0a0a"/>
-        <rect x="16" y="72" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <rect x="16" y="96" width="148" height="10" rx="5" fill="#0a0a0a" opacity="0.08"/>
-        <rect x="16" y="120" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <rect x="16" y="144" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <rect x="16" y="168" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <rect x="16" y="200" width="50" height="8" rx="4" fill="#a0a0a0"/>
-        <rect x="16" y="220" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <rect x="16" y="244" width="148" height="10" rx="5" fill="#e8e8e8"/>
-        <!-- Top bar -->
-        <rect x="180" y="0" width="780" height="52" fill="#ffffff"/>
-        <rect x="200" y="18" width="140" height="16" rx="8" fill="#f5f5f5"/>
-        <circle cx="900" cy="26" r="14" fill="#e8e8e8"/>
-        <circle cx="864" cy="26" r="14" fill="#e8e8e8"/>
-        <!-- Stat cards -->
-        <rect x="200" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
-        <rect x="220" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
-        <rect x="220" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
-        <rect x="220" y="136" width="50" height="8" rx="4" fill="#16a34a" opacity="0.7"/>
-
-        <rect x="382" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
-        <rect x="402" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
-        <rect x="402" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
-        <rect x="402" y="136" width="50" height="8" rx="4" fill="#16a34a" opacity="0.7"/>
-
-        <rect x="564" y="72" width="166" height="90" rx="10" fill="#ffffff"/>
-        <rect x="584" y="90" width="60" height="9" rx="4" fill="#a0a0a0"/>
-        <rect x="584" y="110" width="90" height="16" rx="6" fill="#0a0a0a"/>
-        <rect x="584" y="136" width="50" height="8" rx="4" fill="#a0a0a0" opacity="0.5"/>
-
-        <rect x="746" y="72" width="166" height="90" rx="10" fill="#0a0a0a"/>
-        <rect x="766" y="90" width="60" height="9" rx="4" fill="#ffffff" opacity="0.4"/>
-        <rect x="766" y="110" width="90" height="16" rx="6" fill="#ffffff"/>
-        <rect x="766" y="136" width="50" height="8" rx="4" fill="#ffffff" opacity="0.4"/>
-
-        <!-- Chart area -->
-        <rect x="200" y="178" width="530" height="200" rx="10" fill="#ffffff"/>
-        <rect x="220" y="196" width="100" height="11" rx="5" fill="#0a0a0a"/>
-        <rect x="220" y="216" width="60" height="8" rx="4" fill="#a0a0a0"/>
-        <!-- Chart bars -->
-        <rect x="240" y="310" width="28" height="50" rx="4" fill="#e8e8e8"/>
-        <rect x="284" y="280" width="28" height="80" rx="4" fill="#e8e8e8"/>
-        <rect x="328" y="260" width="28" height="100" rx="4" fill="#0a0a0a"/>
-        <rect x="372" y="290" width="28" height="70" rx="4" fill="#e8e8e8"/>
-        <rect x="416" y="270" width="28" height="90" rx="4" fill="#e8e8e8"/>
-        <rect x="460" y="250" width="28" height="110" rx="4" fill="#0a0a0a"/>
-        <rect x="504" y="285" width="28" height="75" rx="4" fill="#e8e8e8"/>
-        <rect x="548" y="265" width="28" height="95" rx="4" fill="#e8e8e8"/>
-        <rect x="592" y="240" width="28" height="120" rx="4" fill="#0a0a0a"/>
-        <rect x="636" y="270" width="28" height="90" rx="4" fill="#e8e8e8"/>
-        <!-- Right panel -->
-        <rect x="746" y="178" width="166" height="200" rx="10" fill="#ffffff"/>
-        <rect x="766" y="196" width="80" height="10" rx="5" fill="#0a0a0a"/>
-        <rect x="766" y="220" width="126" height="1" fill="#e8e8e8"/>
-        <rect x="766" y="234" width="100" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="766" y="254" width="80" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="766" y="274" width="110" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="766" y="294" width="70" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="766" y="314" width="90" height="8" rx="4" fill="#e8e8e8"/>
-        <!-- Bottom row -->
-        <rect x="200" y="394" width="340" height="120" rx="10" fill="#ffffff"/>
-        <rect x="220" y="412" width="100" height="10" rx="5" fill="#0a0a0a"/>
-        <rect x="220" y="432" width="200" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="220" y="450" width="160" height="8" rx="4" fill="#e8e8e8"/>
-        <rect x="220" y="468" width="180" height="8" rx="4" fill="#e8e8e8"/>
-
-        <rect x="556" y="394" width="356" height="120" rx="10" fill="#ffffff"/>
-        <rect x="576" y="412" width="100" height="10" rx="5" fill="#0a0a0a"/>
-        <rect x="576" y="434" width="60" height="24" rx="6" fill="#f5f5f5"/>
-        <rect x="646" y="434" width="60" height="24" rx="6" fill="#f5f5f5"/>
-        <rect x="716" y="434" width="60" height="24" rx="6" fill="#0a0a0a"/>
-      </svg>
       </div>
     </div>
   </section>
@@ -183,22 +105,10 @@
   <section class="stats">
     <div class="container">
       <div class="stats-grid">
-        <div class="reveal">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Clients served</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">99%</div>
-          <div class="stat-label">Uptime delivered</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">15m</div>
-          <div class="stat-label">Avg. response time</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">Year established</div>
-        </div>
+        <div class="reveal"><div class="stat-num">500+</div><div class="stat-label">Clients served</div></div>
+        <div class="reveal"><div class="stat-num">99%</div><div class="stat-label">Uptime delivered</div></div>
+        <div class="reveal"><div class="stat-num">15m</div><div class="stat-label">Avg. response time</div></div>
+        <div class="reveal"><div class="stat-num">2026</div><div class="stat-label">Year established</div></div>
       </div>
     </div>
   </section>
@@ -212,21 +122,9 @@
         <p class="section-desc">Getting your IT sorted with Tecwee is straightforward — three steps and you're covered.</p>
       </div>
       <div class="steps-grid">
-        <div class="step-item reveal">
-          <p class="step-num">01</p>
-          <h3>Get in touch</h3>
-          <p>Tell us what you need. Whether it's a one-off fix or ongoing support, we'll listen and advise.</p>
-        </div>
-        <div class="step-item reveal">
-          <p class="step-num">02</p>
-          <h3>We assess & plan</h3>
-          <p>Our team reviews your environment, identifies risks, and presents a clear action plan.</p>
-        </div>
-        <div class="step-item reveal">
-          <p class="step-num">03</p>
-          <h3>We deliver & support</h3>
-          <p>We execute the work, then stay available for ongoing monitoring and rapid response.</p>
-        </div>
+        <div class="step-item reveal"><p class="step-num">01</p><h3>Get in touch</h3><p>Tell us what you need. Whether it's a one-off fix or ongoing support, we'll listen and advise.</p></div>
+        <div class="step-item reveal"><p class="step-num">02</p><h3>We assess & plan</h3><p>Our team reviews your environment, identifies risks, and presents a clear action plan.</p></div>
+        <div class="step-item reveal"><p class="step-num">03</p><h3>We deliver & support</h3><p>We execute the work, then stay available for ongoing monitoring and rapid response.</p></div>
       </div>
     </div>
   </section>
@@ -243,20 +141,14 @@
           <p class="testimonial-text">"Tecwee resolved our network issues within an hour. Their team is professional, fast, and genuinely cares about keeping our business running."</p>
           <div class="testimonial-author">
             <div class="author-avatar">JB</div>
-            <div>
-              <div class="author-name">James B.</div>
-              <div class="author-role">Operations Manager</div>
-            </div>
+            <div><div class="author-name">James B.</div><div class="author-role">Operations Manager</div></div>
           </div>
         </div>
         <div class="testimonial-card reveal">
           <p class="testimonial-text">"We switched to Tecwee for all our IT needs and haven't looked back. Setup, security, and backup — all handled professionally and on time."</p>
           <div class="testimonial-author">
             <div class="author-avatar">SM</div>
-            <div>
-              <div class="author-name">Sarah M.</div>
-              <div class="author-role">Marketing Director</div>
-            </div>
+            <div><div class="author-name">Sarah M.</div><div class="author-role">Marketing Director</div></div>
           </div>
         </div>
       </div>
@@ -299,6 +191,7 @@
           <div class="footer-col-title">Company</div>
           <div class="footer-links">
             <a href="about.html">About</a>
+            <a href="pricing.html">Pricing</a>
             <a href="contact.html">Contact</a>
             <a href="login.html">Client Portal</a>
           </div>

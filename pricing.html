@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing | Tecwee</title>
+  <meta name="description" content="Simple, transparent pricing for all your IT needs. No hidden fees." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Tecwee</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">Company</a></li>
+        <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Sign in</a>
+        <a href="contact.html" class="btn btn-primary">Get started</a>
+      </div>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section style="padding: calc(var(--nav-h) + 80px) 40px 80px; text-align:center; background: var(--white);">
+    <div style="max-width:640px; margin:0 auto;">
+      <span class="tag"><span class="tag-dot"></span>Pricing</span>
+      <h1 class="hero-central-title" style="font-size: clamp(2.8rem,7vw,5.5rem); margin-bottom:20px;">Simple pricing.</h1>
+      <p style="font-size:1.1rem; color:var(--neutral-500); line-height:1.7;">Flexible plans to keep your business IT running smoothly. No lock-ins, no surprises.</p>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section style="padding: 40px 40px 100px; background: var(--neutral-100);">
+    <div style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns: repeat(3,1fr); gap:24px;">
+
+      <!-- Starter -->
+      <div class="service-card reveal" style="background:var(--white);">
+        <div style="font-size:0.82rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--neutral-500); margin-bottom:8px;">Starter</div>
+        <div style="font-size:0.9rem; color:var(--neutral-500); margin-bottom:24px;">For small businesses</div>
+        <div style="font-size:3rem; font-weight:700; letter-spacing:-0.04em; color:var(--black); margin-bottom:4px;">₹2,999</div>
+        <div style="font-size:0.85rem; color:var(--neutral-400); margin-bottom:32px;">per month</div>
+        <a href="contact.html" class="btn btn-secondary" style="width:100%; justify-content:center; margin-bottom:32px;">Get started</a>
+        <ul class="service-list">
+          <li>Up to 2 devices</li>
+          <li>Email & remote support</li>
+          <li>Monthly health check</li>
+          <li>Basic security setup</li>
+          <li>Data backup (100GB)</li>
+        </ul>
+      </div>
+
+      <!-- Pro -->
+      <div class="service-card reveal" style="background:var(--black); border-color:var(--black);">
+        <div style="font-size:0.82rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px;">Pro</div>
+        <div style="font-size:0.9rem; color:rgba(255,255,255,0.5); margin-bottom:24px;">For growing teams</div>
+        <div style="font-size:3rem; font-weight:700; letter-spacing:-0.04em; color:var(--white); margin-bottom:4px;">₹6,999</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.4); margin-bottom:32px;">per month</div>
+        <a href="contact.html" class="btn btn-white" style="width:100%; justify-content:center; margin-bottom:32px;">Get started</a>
+        <ul class="service-list">
+          <li style="color:rgba(255,255,255,0.7);">Up to 10 devices</li>
+          <li style="color:rgba(255,255,255,0.7);">Priority support (15m response)</li>
+          <li style="color:rgba(255,255,255,0.7);">Weekly health checks</li>
+          <li style="color:rgba(255,255,255,0.7);">Advanced security & firewall</li>
+          <li style="color:rgba(255,255,255,0.7);">Data backup (1TB)</li>
+          <li style="color:rgba(255,255,255,0.7);">Network monitoring</li>
+        </ul>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="service-card reveal" style="background:var(--white);">
+        <div style="font-size:0.82rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--neutral-500); margin-bottom:8px;">Enterprise</div>
+        <div style="font-size:0.9rem; color:var(--neutral-500); margin-bottom:24px;">For larger organisations</div>
+        <div style="font-size:3rem; font-weight:700; letter-spacing:-0.04em; color:var(--black); margin-bottom:4px;">Custom</div>
+        <div style="font-size:0.85rem; color:var(--neutral-400); margin-bottom:32px;">talk to us</div>
+        <a href="contact.html" class="btn btn-primary" style="width:100%; justify-content:center; margin-bottom:32px;">Contact us</a>
+        <ul class="service-list">
+          <li>Unlimited devices</li>
+          <li>Dedicated IT manager</li>
+          <li>24/7 on-call support</li>
+          <li>Full security audit</li>
+          <li>Unlimited backup storage</li>
+          <li>Hardware procurement</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- FAQ hint -->
+    <div style="text-align:center; margin-top:60px;">
+      <p style="font-size:1rem; color:var(--neutral-500);">Not sure which plan is right for you? <a href="contact.html" style="color:var(--black); font-weight:500; text-decoration:underline; text-underline-offset:3px;">Talk to our team</a></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-title">Start your free consultation</h2>
+        <p class="cta-desc">No commitment. Just a honest conversation about how we can help your business.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-white btn-lg">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Tecwee</div>
+          <p class="footer-brand-desc">Professional IT solutions for businesses of all sizes. Reliable, fast, and always available.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html">System Setup</a>
+            <a href="services.html">Security</a>
+            <a href="services.html">Networking</a>
+            <a href="services.html">Data Backup</a>
+            <a href="services.html">Remote Support</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Client Portal</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <div class="footer-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Tecwee. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
