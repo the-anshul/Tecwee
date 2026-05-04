@@ -1,6 +1,0 @@
-services:
-  - type: static
-    name: tecwee
-    env: static
-    buildCommand: null
-    staticPublishPath: ./
