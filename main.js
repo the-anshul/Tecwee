@@ -52,7 +52,7 @@
   const ctx = canvas.getContext('2d');
 
   let W, H, particles = [], mouse = { x: -1000, y: -1000 };
-  const COUNT = 380;
+  const COUNT = 1000;
   const RADIUS_BASE = 0.32; // fraction of min(W,H)
 
   function resize() {
