@@ -45,14 +45,126 @@
   });
 })();
 
-/* 3. PARTICLE SPHERE — Central template style */
+/* 4. SCROLL REVEAL */
+(function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => observer.observe(el));
+})();
+
+/* 5. CONTACT FORM */
+(function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const span = btn.querySelector('span') || btn;
+    const orig = span.textContent;
+    btn.disabled = true;
+    span.textContent = 'Sending…';
+    
+    try {
+      const response = await fetch('http://localhost:3000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+        })
+      });
+      
+      if (!response.ok) throw new Error('Network response was not ok');
+      
+      span.textContent = '✓ Message sent!';
+      btn.style.background = '#16a34a';
+    } catch (err) {
+      console.error('Submission failed', err);
+      span.textContent = '✕ Error sending';
+      btn.style.background = '#dc2626';
+    } finally {
+      setTimeout(() => { 
+        span.textContent = orig; 
+        btn.style.background = ''; 
+        btn.disabled = false; 
+        if(span.textContent === '✓ Message sent!') form.reset(); 
+      }, 3000);
+    }
+  });
+})();
+
+/* 6. LOGIN FORM */
+(function initLoginForm() {
+  const form = document.getElementById('loginForm');
+  if (!form) return;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Signing in…';
+    
+    try {
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('loginEmail').value,
+          password: document.getElementById('loginPassword').value
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+      
+      btn.textContent = '✓ Welcome back!';
+      btn.style.background = '#16a34a';
+      // In a real app, you would save the token to localStorage
+      // localStorage.setItem('token', data.token);
+    } catch (err) {
+      console.error('Login error', err);
+      btn.textContent = '✕ ' + err.message;
+      btn.style.background = '#dc2626';
+    } finally {
+      setTimeout(() => { 
+        btn.textContent = orig; 
+        btn.style.background = ''; 
+        btn.disabled = false; 
+        if(btn.textContent === '✓ Welcome back!') form.reset(); 
+      }, 2500);
+    }
+  });
+})();
+
+/* 7. PAGE FADE IN */
+(function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.4s ease';
+  window.addEventListener('load', () => { document.body.style.opacity = '1'; });
+})();
+
+/* 8. PARTICLE SPHERE — Central template style */
 (function initParticles() {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let W, H, particles = [], mouse = { x: -1000, y: -1000 };
-  const COUNT = 10000;
+  const COUNT = 25000;
   const RADIUS_BASE = 0.32; // fraction of min(W,H)
 
   function resize() {
@@ -86,7 +198,7 @@
     const fov = 900;
     const zOff = fov + z;
     const scale = fov / zOff;
-    const cx = W * 0.62, cy = H * 0.42; // sphere center — right-center like Central
+    const cx = W * 0.75, cy = H * 0.45; // sphere center — right-center
     return { x: cx + x * scale, y: cy + y * scale, scale };
   }
 
@@ -113,8 +225,8 @@
     rotX += 0.0008;
 
     // subtle mouse influence
-    const mx = (mouse.x - W * 0.62) / (W * 0.3);
-    const my = (mouse.y - H * 0.42) / (H * 0.3);
+    const mx = (mouse.x - W * 0.75) / (W * 0.3);
+    const my = (mouse.y - H * 0.45) / (H * 0.3);
     const targetRotY = rotY + mx * 0.4;
     const targetRotX = rotX + my * 0.2;
 
@@ -156,63 +268,4 @@
   resize();
   createParticles();
   draw();
-})();
-
-/* 4. SCROLL REVEAL */
-(function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(el => observer.observe(el));
-})();
-
-/* 5. CONTACT FORM */
-(function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const span = btn.querySelector('span') || btn;
-    const orig = span.textContent;
-    btn.disabled = true;
-    span.textContent = 'Sending…';
-    setTimeout(() => {
-      span.textContent = '✓ Message sent!';
-      btn.style.background = '#16a34a';
-      setTimeout(() => { span.textContent = orig; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000);
-    }, 1400);
-  });
-})();
-
-/* 6. LOGIN FORM */
-(function initLoginForm() {
-  const form = document.getElementById('loginForm');
-  if (!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Signing in…';
-    setTimeout(() => {
-      btn.textContent = '✓ Welcome back!';
-      btn.style.background = '#16a34a';
-      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; form.reset(); }, 2500);
-    }, 1600);
-  });
-})();
-
-/* 7. PAGE FADE IN */
-(function() {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.4s ease';
-  window.addEventListener('load', () => { document.body.style.opacity = '1'; });
 })();

@@ -41,7 +41,9 @@
   <!-- About Split -->
   <section class="about">
     <div class="container">
-      <div class="about-visual reveal">🏢</div>
+      <div class="about-visual reveal" style="position: relative; overflow: hidden;">
+        <canvas id="aboutCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+      </div>
       <div>
         <span class="tag about-tag"><span class="tag-dot"></span>Our story</span>
         <h2 class="about-title">Why choose Tecwee?</h2>
@@ -149,6 +151,7 @@
             <a href="services.html">Networking</a>
             <a href="services.html">Data Backup</a>
             <a href="services.html">Remote Support</a>
+            <a href="services.html">Web Design & Deployment</a>
           </div>
         </div>
         <div>
@@ -179,6 +182,9 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-scenes.js"></script>
+  <script src="animations.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

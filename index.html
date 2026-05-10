@@ -28,9 +28,9 @@
     </div>
   </nav>
 
-  <!-- HERO — Central style: full viewport, left text, particle canvas -->
+  <!-- HERO — Central style: full viewport, centered, clean -->
   <section class="hero-central" id="home">
-    <canvas id="particleCanvas"></canvas>
+    <canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
     <div class="hero-central-content">
       <h1 class="hero-central-title">Simplify<br>your IT.</h1>
       <p class="hero-central-sub">Run your IT, all in one place.</p>
@@ -96,6 +96,11 @@
           <div class="feature-icon">🆘</div>
           <h3>Remote Support</h3>
           <p>Instant remote assistance — no waiting for a technician to arrive on-site.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💻</div>
+          <h3>Web Design & Deployment</h3>
+          <p>Custom website designing, building, and seamless deployments for your business.</p>
         </div>
       </div>
     </div>
@@ -185,6 +190,7 @@
             <a href="services.html">Networking</a>
             <a href="services.html">Data Backup</a>
             <a href="services.html">Remote Support</a>
+            <a href="services.html">Web Design & Deployment</a>
           </div>
         </div>
         <div>
@@ -216,6 +222,9 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-scenes.js"></script>
+  <script src="animations.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

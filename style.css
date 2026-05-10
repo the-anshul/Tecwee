@@ -2,25 +2,35 @@
    Tecwee — Professional IT Solutions
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 :root {
-  /* Colors — crisp, high-contrast */
-  --black: #111111;
-  --white: #ffffff;
+  /* Central SaaS Design System */
+  --bg: #FFFFFF;
+  --bg-alt: #F1F1F1;
+  --text: #0E0E0E;
+  --text-muted: #666666;
+  --accent: #0E0E0E;
+  --border: #E0E0E0;
+
+  /* Legacy mappings (for gradual transition) */
+  --black: var(--text);
+  --white: var(--bg);
   --neutral-50:  #fafafa;
-  --neutral-100: #f4f4f5;
-  --neutral-200: #e4e4e7;
+  --neutral-100: var(--bg-alt);
+  --neutral-200: var(--border);
   --neutral-300: #d1d1d6;
   --neutral-400: #a1a1aa;
-  --neutral-500: #71717a;
+  --neutral-500: var(--text-muted);
   --neutral-600: #52525b;
   --neutral-700: #3f3f46;
   --neutral-800: #27272a;
   --neutral-900: #18181b;
 
   /* Typography */
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font: var(--font-body);
 
   /* Layout */
   --max-w: 1160px;
@@ -131,17 +141,20 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links {
-    position: fixed;
-    top: var(--nav-h); left: 0; right: 0; bottom: 0;
+    position: absolute;
+    top: 0; right: 0; left: auto; width: 70%; max-width: 320px; height: 100vh;
     background: var(--white);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-    border-top: 1px solid var(--neutral-200);
-    padding: 40px 32px;
-    z-index: 999;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid var(--neutral-200);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+    padding: calc(var(--nav-h) + 32px) 32px 32px;
+    z-index: -1; /* Behind the hamburger icon */
   }
   .nav-links.open { transform: translateX(0); }
   .nav-link { font-size: 1.4rem; font-weight: 500; color: var(--black); padding: 12px 0; }
@@ -165,21 +178,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   background: var(--white);
 }
 
-#particleCanvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
+
 
 .hero-central-content {
   position: relative;
   z-index: 1;
-  padding: 80px 40px 0;
+  padding: 120px 40px 0;
   max-width: var(--max-w);
   margin: 0 auto;
   width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-central-title {
@@ -201,25 +212,27 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 32px;
   padding: 48px 40px 56px;
   max-width: var(--max-w);
   margin: 0 auto;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .hero-central-desc {
   font-size: 1rem;
   color: var(--neutral-500);
-  max-width: 400px;
+  max-width: 600px;
   line-height: 1.7;
 }
 
 .hero-central-actions {
   display: flex;
+  justify-content: flex-start;
   gap: 12px;
   flex-shrink: 0;
   flex-wrap: wrap;
