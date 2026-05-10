@@ -14,6 +14,9 @@ const JWT_SECRET = 'tecwee-super-secret-key-2026';
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the root
+app.use(express.static(path.join(__dirname, '.')));
+
 // Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
