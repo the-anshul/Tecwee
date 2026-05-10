@@ -181,7 +181,8 @@
     const fov = 800;
     const zOff = fov + z;
     const scale = fov / zOff;
-    const cx = W * 0.75, cy = H * 0.45;
+    const cx = W * 0.75; // Right side
+    const cy = H * 0.45; // Centered vertically
     return { x: cx + x * scale, y: cy + y * scale, scale };
   }
 
@@ -202,13 +203,14 @@
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    rotY += 0.003;
-    rotX += 0.0008;
+    rotY += 0.002;
+    rotX += 0.0005;
 
-    const mx = (mouse.x - W * 0.75) / (W * 0.3);
-    const my = (mouse.y - H * 0.45) / (H * 0.3);
-    const targetRotY = rotY + mx * 0.4;
-    const targetRotX = rotX + my * 0.2;
+    // Stronger mouse interaction (Parallax effect)
+    const mx = (mouse.x - W * 0.5) / (W * 0.5);
+    const my = (mouse.y - H * 0.5) / (H * 0.5);
+    const targetRotY = rotY + mx * 0.8;
+    const targetRotX = rotX + my * 0.4;
 
     for (const p of particles) {
       let { ox, oy, oz } = p;
@@ -219,12 +221,12 @@
 
       const proj = project(ox, oy, oz);
       const depth = (oz + Math.min(W, H) * RADIUS_BASE) / (2 * Math.min(W, H) * RADIUS_BASE);
-      const alpha = 0.15 + depth * 0.5;
-      const s = Math.max(0.5, p.size * proj.scale * 0.6);
+      const alpha = 0.1 + depth * 0.6;
+      const s = Math.max(0.4, p.size * proj.scale * 0.5);
 
       ctx.beginPath();
       ctx.arc(proj.x, proj.y, s, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(10,10,10,${alpha.toFixed(2)})`;
+      ctx.fillStyle = `rgba(0,0,0,${alpha.toFixed(2)})`; // Using black for premium dark-on-light look
       ctx.fill();
     }
     requestAnimationFrame(draw);
