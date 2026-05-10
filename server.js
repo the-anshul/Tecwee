@@ -17,6 +17,11 @@ app.use(express.json());
 // Serve static files from the root
 app.use(express.static(path.join(__dirname, '.')));
 
+// Explicit route for the homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
