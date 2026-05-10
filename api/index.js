@@ -14,11 +14,6 @@ const JWT_SECRET = process.env.JWT_SECRET || 'tecwee-secret-2026';
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the root
-// On Vercel, process.cwd() is the root of the project
-const root = process.cwd();
-app.use(express.static(root));
-
 // Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
@@ -74,26 +69,5 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Explicitly serve index.html for the root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(root, 'index.html'));
-});
-
-// Serve other HTML pages if requested without extension or with .html
-app.get('/:page', (req, res) => {
-  const page = req.params.page;
-  if (page.endsWith('.html')) {
-    res.sendFile(path.join(root, page));
-  } else {
-    res.sendFile(path.join(root, page + '.html'), (err) => {
-      if (err) res.status(404).send('Page not found');
-    });
-  }
-});
-
-// Start Server for local testing
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-}
-
+// API routes are handled above.
 module.exports = app;
