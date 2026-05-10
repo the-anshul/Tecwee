@@ -149,7 +149,7 @@
   const ctx = canvas.getContext('2d');
 
   let W, H, particles = [], mouse = { x: -1000, y: -1000 };
-  const COUNT = 2000; // Optimized from 25000
+  const COUNT = 10000; // Increased for a more dense, premium look
   const RADIUS_BASE = 0.32; 
 
   function resize() {
