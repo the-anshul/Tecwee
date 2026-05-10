@@ -1,32 +1,23 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'tecwee-super-secret-key-2026';
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-if (!supabaseUrl || !supabaseKey || supabaseKey === 'yaha_apni_anon_public_key_paste_karein') {
-  console.warn("WARNING: SUPABASE_URL and SUPABASE_KEY are not correctly set in the .env file.");
-}
+export default async function handler(req, res) {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-const supabase = createClient(supabaseUrl || '', supabaseKey || '');
-console.log('Initialized Supabase connection.');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-// API Endpoint: Submit Contact Form
-app.post('/api/contact', async (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { firstName, lastName, email, subject, message } = req.body;
   
   if (!firstName || !lastName || !email || !message) {
@@ -35,9 +26,7 @@ app.post('/api/contact', async (req, res) => {
 
   const { data, error } = await supabase
     .from('contacts')
-    .insert([
-      { firstName, lastName, email, subject, message }
-    ])
+    .insert([{ firstName, lastName, email, subject, message }])
     .select();
 
   if (error) {
@@ -45,45 +34,5 @@ app.post('/api/contact', async (req, res) => {
     return res.status(500).json({ error: 'Failed to save message' });
   }
   
-  const id = data && data.length > 0 ? data[0].id : null;
-  res.status(201).json({ message: 'Message received successfully', id });
-});
-
-// API Endpoint: Login
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required' });
-  }
-
-  const { data: users, error } = await supabase
-    .from('users')
-    .select('id, email, password_hash')
-    .eq('email', email)
-    .limit(1);
-
-  if (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Database error' });
-  }
-
-  const user = users && users.length > 0 ? users[0] : null;
-
-  if (!user) {
-    return res.status(401).json({ error: 'Invalid credentials' });
-  }
-
-  const match = await bcrypt.compare(password, user.password_hash);
-  if (!match) {
-    return res.status(401).json({ error: 'Invalid credentials' });
-  }
-
-  const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' });
-  res.json({ message: 'Login successful', token });
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+  return res.status(201).json({ message: 'Message received successfully', id: data[0].id });
+}

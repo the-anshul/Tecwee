@@ -1,56 +1,26 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+const { createClient } = require('@supabase/supabase-js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const path = require('path');
-const { createClient } = require('@supabase/supabase-js');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'tecwee-super-secret-key-2026';
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+const JWT_SECRET = 'tecwee-super-secret-key-2026';
 
-if (!supabaseUrl || !supabaseKey || supabaseKey === 'yaha_apni_anon_public_key_paste_karein') {
-  console.warn("WARNING: SUPABASE_URL and SUPABASE_KEY are not correctly set in the .env file.");
-}
+export default async function handler(req, res) {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-const supabase = createClient(supabaseUrl || '', supabaseKey || '');
-console.log('Initialized Supabase connection.');
-
-// API Endpoint: Submit Contact Form
-app.post('/api/contact', async (req, res) => {
-  const { firstName, lastName, email, subject, message } = req.body;
-  
-  if (!firstName || !lastName || !email || !message) {
-    return res.status(400).json({ error: 'Missing required fields' });
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
 
-  const { data, error } = await supabase
-    .from('contacts')
-    .insert([
-      { firstName, lastName, email, subject, message }
-    ])
-    .select();
-
-  if (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Failed to save message' });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
-  
-  const id = data && data.length > 0 ? data[0].id : null;
-  res.status(201).json({ message: 'Message received successfully', id });
-});
 
-// API Endpoint: Login
-app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -80,10 +50,5 @@ app.post('/api/login', async (req, res) => {
   }
 
   const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' });
-  res.json({ message: 'Login successful', token });
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+  return res.status(200).json({ message: 'Login successful', token });
+}
