@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -12,6 +13,9 @@ const JWT_SECRET = 'tecwee-super-secret-key-2026';
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname, '.')));
 
 // Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
