@@ -45,21 +45,6 @@
   });
 })();
 
-/* 4. SCROLL REVEAL */
-(function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(el => observer.observe(el));
-})();
-
 /* 5. CONTACT FORM */
 (function initContactForm() {
   const form = document.getElementById('contactForm');
@@ -157,15 +142,15 @@
   window.addEventListener('load', () => { document.body.style.opacity = '1'; });
 })();
 
-/* 8. PARTICLE SPHERE — Central template style */
+/* 8. PARTICLE SPHERE — Optimized */
 (function initParticles() {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let W, H, particles = [], mouse = { x: -1000, y: -1000 };
-  const COUNT = 25000;
-  const RADIUS_BASE = 0.32; // fraction of min(W,H)
+  const COUNT = 2000; // Optimized from 25000
+  const RADIUS_BASE = 0.32; 
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
@@ -176,10 +161,8 @@
     particles = [];
     const R = Math.min(W, H) * RADIUS_BASE;
     for (let i = 0; i < COUNT; i++) {
-      // Fibonacci sphere distribution
       const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
       const theta = Math.PI * (1 + Math.sqrt(5)) * i;
-      // add slight random scatter
       const r = R * (0.85 + Math.random() * 0.3);
       particles.push({
         ox: r * Math.sin(phi) * Math.cos(theta),
@@ -187,18 +170,18 @@
         oz: r * Math.cos(phi),
         angle: Math.random() * Math.PI * 2,
         speed: 0.0003 + Math.random() * 0.0004,
-        size: 0.8 + Math.random() * 1.2,
+        size: 1.2 + Math.random() * 1.8, // Slightly larger particles for better fill
       });
     }
   }
 
-  let rotX = 0, rotY = 0, time = 0;
+  let rotX = 0, rotY = 0;
 
   function project(x, y, z) {
-    const fov = 900;
+    const fov = 800;
     const zOff = fov + z;
     const scale = fov / zOff;
-    const cx = W * 0.75, cy = H * 0.45; // sphere center — right-center
+    const cx = W * 0.75, cy = H * 0.45;
     return { x: cx + x * scale, y: cy + y * scale, scale };
   }
 
@@ -218,13 +201,10 @@
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    time += 1;
 
-    // gentle auto-rotation
     rotY += 0.003;
     rotX += 0.0008;
 
-    // subtle mouse influence
     const mx = (mouse.x - W * 0.75) / (W * 0.3);
     const my = (mouse.y - H * 0.45) / (H * 0.3);
     const targetRotY = rotY + mx * 0.4;
@@ -232,29 +212,21 @@
 
     for (const p of particles) {
       let { ox, oy, oz } = p;
-
-      // rotateY
       const ry = rotateY(ox, oz, targetRotY);
       ox = ry.x; oz = ry.z;
-      // rotateX
       const rx = rotateX(oy, oz, targetRotX);
       oy = rx.y; oz = rx.z;
 
       const proj = project(ox, oy, oz);
       const depth = (oz + Math.min(W, H) * RADIUS_BASE) / (2 * Math.min(W, H) * RADIUS_BASE);
-      const alpha = 0.08 + depth * 0.55;
-      const size = p.size * proj.scale * 0.5;
+      const alpha = 0.15 + depth * 0.5;
+      const s = Math.max(0.5, p.size * proj.scale * 0.6);
 
-      const s = Math.max(0.5, size * 1.6);
       ctx.beginPath();
-      ctx.moveTo(proj.x, proj.y - s);
-      ctx.lineTo(proj.x + s * 0.866, proj.y + s * 0.5);
-      ctx.lineTo(proj.x - s * 0.866, proj.y + s * 0.5);
-      ctx.closePath();
+      ctx.arc(proj.x, proj.y, s, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(10,10,10,${alpha.toFixed(2)})`;
       ctx.fill();
     }
-
     requestAnimationFrame(draw);
   }
 
