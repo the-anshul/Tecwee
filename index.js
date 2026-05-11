@@ -70,4 +70,10 @@ app.post('/api/login', async (req, res) => {
 });
 
 // API routes are handled above.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Tecwee API server running on port ${PORT}`);
+  });
+}
+
 module.exports = app;
