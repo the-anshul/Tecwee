@@ -73,6 +73,7 @@ app.post('/api/login', async (req, res) => {
 app.use(express.static(path.join(__dirname)));
 
 // Serve specific HTML files for routes (cleaner URLs)
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
 app.get('/services', (req, res) => res.sendFile(path.join(__dirname, 'services.html')));
 app.get('/pricing', (req, res) => res.sendFile(path.join(__dirname, 'pricing.html')));
