@@ -69,10 +69,20 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname)));
+
+// Serve specific HTML files for routes (cleaner URLs)
+app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
+app.get('/services', (req, res) => res.sendFile(path.join(__dirname, 'services.html')));
+app.get('/pricing', (req, res) => res.sendFile(path.join(__dirname, 'pricing.html')));
+app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, 'contact.html')));
+app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+
 // API routes are handled above.
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`Tecwee API server running on port ${PORT}`);
+    console.log(`Tecwee API server running on http://localhost:${PORT}`);
   });
 }
 
