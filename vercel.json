@@ -1,41 +1,9 @@
 {
-  "functions": {
-    "api/index.js": {
-      "includeFiles": [
-        "*.html",
-        "*.css",
-        "*.js"
-      ]
-    }
-  },
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
-    },
-    {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/about",
-      "destination": "/about.html"
-    },
-    {
-      "source": "/services",
-      "destination": "/services.html"
-    },
-    {
-      "source": "/pricing",
-      "destination": "/pricing.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/contact.html"
-    },
-    {
-      "source": "/login",
-      "destination": "/login.html"
     }
   ]
 }

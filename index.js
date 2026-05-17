@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
-const staticAssets = require('./static-assets');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -71,11 +70,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Serve static files from the root directory
-app.get('/style.css', (req, res) => res.type('text/css').send(staticAssets.styleCss));
-app.get('/main.js', (req, res) => res.type('text/javascript').send(staticAssets.mainJs));
-app.get('/animations.js', (req, res) => res.type('text/javascript').send(staticAssets.animationsJs));
-app.get('/three-scenes.js', (req, res) => res.type('text/javascript').send(staticAssets.threeScenesJs));
+// Serve static files from the root directory for local development.
 app.use(express.static(publicDir));
 
 // Serve specific HTML files for routes (cleaner URLs)
