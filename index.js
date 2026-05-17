@@ -9,6 +9,7 @@ const { createClient } = require('@supabase/supabase-js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'tecwee-secret-2026';
+const publicDir = process.cwd();
 
 // Middleware
 app.use(cors());
@@ -70,15 +71,15 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Serve static files from the root directory
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(publicDir));
 
 // Serve specific HTML files for routes (cleaner URLs)
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
-app.get('/services', (req, res) => res.sendFile(path.join(__dirname, 'services.html')));
-app.get('/pricing', (req, res) => res.sendFile(path.join(__dirname, 'pricing.html')));
-app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, 'contact.html')));
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+app.get('/', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
+app.get('/about', (req, res) => res.sendFile(path.join(publicDir, 'about.html')));
+app.get('/services', (req, res) => res.sendFile(path.join(publicDir, 'services.html')));
+app.get('/pricing', (req, res) => res.sendFile(path.join(publicDir, 'pricing.html')));
+app.get('/contact', (req, res) => res.sendFile(path.join(publicDir, 'contact.html')));
+app.get('/login', (req, res) => res.sendFile(path.join(publicDir, 'login.html')));
 
 // API routes are handled above.
 if (require.main === module) {
