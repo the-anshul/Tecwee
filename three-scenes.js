@@ -21,7 +21,6 @@
   const PARTICLE_COUNT = window.innerWidth < 480 ? 60 : 120;
   const positions = [];
   const velocities = [];
-  const particleData = [];
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     const x = (Math.random() - 0.5) * 140;
@@ -33,7 +32,6 @@
       (Math.random() - 0.5) * 0.06,
       (Math.random() - 0.5) * 0.03
     );
-    particleData.push({ x, y, z });
   }
 
   const geo = new THREE.BufferGeometry();

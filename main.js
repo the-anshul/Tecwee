@@ -1,245 +1,134 @@
-/* ============================================================
-   main.js — Navbar, Hamburger, Particle Sphere, Scroll Reveal
-   ============================================================ */
-
-/* 1. NAVBAR */
 (function initNavbar() {
-  const navbar = document.getElementById('navbar');
+  const navbar = document.getElementById("navbar");
   if (!navbar) return;
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
+
+  const update = () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 10);
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
 })();
 
-/* 2. HAMBURGER */
 (function initHamburger() {
-  const btn = document.getElementById('hamburger');
-  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById("hamburger");
+  const nav = document.getElementById("navLinks");
   if (!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    const open = btn.classList.toggle('open');
-    nav.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+
+  const close = () => {
+    btn.classList.remove("open");
+    nav.classList.remove("open");
+    document.body.style.overflow = "";
+  };
+
+  btn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const open = btn.classList.toggle("open");
+    nav.classList.toggle("open", open);
+    document.body.style.overflow = open ? "hidden" : "";
   });
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      btn.classList.remove('open');
-      nav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#navbar")) close();
   });
-  document.addEventListener('click', e => {
-    const nb = document.getElementById('navbar');
-    if (nb && !nb.contains(e.target)) {
-      btn.classList.remove('open');
-      nav.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      btn.classList.remove('open');
-      nav.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) close();
   });
 })();
 
-/* 5. CONTACT FORM */
 (function initContactForm() {
-  const form = document.getElementById('contactForm');
+  const form = document.getElementById("contactForm");
   if (!form) return;
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    const span = btn.querySelector('span') || btn;
-    const orig = span.textContent;
+    const label = btn.querySelector("span") || btn;
+    const original = label.textContent;
+
     btn.disabled = true;
-    span.textContent = 'Sending…';
-    
+    label.textContent = "Sending...";
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: document.getElementById('firstName').value,
-          lastName: document.getElementById('lastName').value,
-          email: document.getElementById('email').value,
-          subject: document.getElementById('subject').value,
-          message: document.getElementById('message').value
-        })
+          firstName: document.getElementById("firstName").value,
+          lastName: document.getElementById("lastName").value,
+          email: document.getElementById("email").value,
+          subject: document.getElementById("subject").value,
+          message: document.getElementById("message").value,
+        }),
       });
-      
-      if (!response.ok) throw new Error('Network response was not ok');
-      
-      span.textContent = '✓ Message sent!';
-      btn.style.background = '#16a34a';
-    } catch (err) {
-      console.error('Submission failed', err);
-      span.textContent = '✕ Error sending';
-      btn.style.background = '#dc2626';
+
+      if (!response.ok) throw new Error("Message could not be sent");
+
+      label.textContent = "Message sent";
+      btn.style.background = "#006970";
+      form.reset();
+    } catch (error) {
+      console.error("Submission failed", error);
+      label.textContent = "Error sending";
+      btn.style.background = "#ba1a1a";
     } finally {
-      setTimeout(() => { 
-        span.textContent = orig; 
-        btn.style.background = ''; 
-        btn.disabled = false; 
-        if(span.textContent === '✓ Message sent!') form.reset(); 
-      }, 3000);
+      window.setTimeout(() => {
+        label.textContent = original;
+        btn.style.background = "";
+        btn.disabled = false;
+      }, 2600);
     }
   });
 })();
 
-/* 6. LOGIN FORM */
 (function initLoginForm() {
-  const form = document.getElementById('loginForm');
+  const form = document.getElementById("loginForm");
   if (!form) return;
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    const orig = btn.textContent;
+    const original = btn.textContent;
+
     btn.disabled = true;
-    btn.textContent = 'Signing in…';
-    
+    btn.textContent = "Signing in...";
+
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: document.getElementById('loginEmail').value,
-          password: document.getElementById('loginPassword').value
-        })
+          email: document.getElementById("loginEmail").value,
+          password: document.getElementById("loginPassword").value,
+        }),
       });
-      
       const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
-      }
-      
-      btn.textContent = '✓ Welcome back!';
-      btn.style.background = '#16a34a';
-      // In a real app, you would save the token to localStorage
-      // localStorage.setItem('token', data.token);
-    } catch (err) {
-      console.error('Login error', err);
-      btn.textContent = '✕ ' + err.message;
-      btn.style.background = '#dc2626';
+      if (!response.ok) throw new Error(data.error || "Login failed");
+
+      btn.textContent = "Welcome back";
+      btn.style.background = "#006970";
+      form.reset();
+    } catch (error) {
+      console.error("Login error", error);
+      btn.textContent = error.message;
+      btn.style.background = "#ba1a1a";
     } finally {
-      setTimeout(() => { 
-        btn.textContent = orig; 
-        btn.style.background = ''; 
-        btn.disabled = false; 
-        if(btn.textContent === '✓ Welcome back!') form.reset(); 
-      }, 2500);
+      window.setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = "";
+        btn.disabled = false;
+      }, 2400);
     }
   });
 })();
 
-/* 7. PAGE FADE IN */
-(function() {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.4s ease';
-  window.addEventListener('load', () => { document.body.style.opacity = '1'; });
-})();
-
-/* 8. PARTICLE SPHERE — Optimized */
-(function initParticles() {
-  const canvas = document.getElementById('particleCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let W, H, particles = [], mouse = { x: -1000, y: -1000 };
-  const COUNT = 10000; // Increased for a more dense, premium look
-  const RADIUS_BASE = 0.32; 
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
-  function createParticles() {
-    particles = [];
-    const R = Math.min(W, H) * RADIUS_BASE;
-    for (let i = 0; i < COUNT; i++) {
-      const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
-      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
-      const r = R * (0.85 + Math.random() * 0.3);
-      particles.push({
-        ox: r * Math.sin(phi) * Math.cos(theta),
-        oy: r * Math.sin(phi) * Math.sin(theta),
-        oz: r * Math.cos(phi),
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.0003 + Math.random() * 0.0004,
-        size: 1.2 + Math.random() * 1.8, // Slightly larger particles for better fill
-      });
-    }
-  }
-
-  let rotX = 0, rotY = 0;
-
-  function project(x, y, z) {
-    const fov = 800;
-    const zOff = fov + z;
-    const scale = fov / zOff;
-    const cx = W * 0.75; // Right side
-    const cy = H * 0.45; // Centered vertically
-    return { x: cx + x * scale, y: cy + y * scale, scale };
-  }
-
-  function rotateY(x, z, angle) {
-    return {
-      x: x * Math.cos(angle) - z * Math.sin(angle),
-      z: x * Math.sin(angle) + z * Math.cos(angle),
-    };
-  }
-
-  function rotateX(y, z, angle) {
-    return {
-      y: y * Math.cos(angle) - z * Math.sin(angle),
-      z: y * Math.sin(angle) + z * Math.cos(angle),
-    };
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    rotY += 0.002;
-    rotX += 0.0005;
-
-    // Stronger mouse interaction (Parallax effect)
-    const mx = (mouse.x - W * 0.5) / (W * 0.5);
-    const my = (mouse.y - H * 0.5) / (H * 0.5);
-    const targetRotY = rotY + mx * 0.8;
-    const targetRotX = rotX + my * 0.4;
-
-    for (const p of particles) {
-      let { ox, oy, oz } = p;
-      const ry = rotateY(ox, oz, targetRotY);
-      ox = ry.x; oz = ry.z;
-      const rx = rotateX(oy, oz, targetRotX);
-      oy = rx.y; oz = rx.z;
-
-      const proj = project(ox, oy, oz);
-      const depth = (oz + Math.min(W, H) * RADIUS_BASE) / (2 * Math.min(W, H) * RADIUS_BASE);
-      const alpha = 0.1 + depth * 0.6;
-      const s = Math.max(0.4, p.size * proj.scale * 0.5);
-
-      ctx.beginPath();
-      ctx.arc(proj.x, proj.y, s, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0,0,0,${alpha.toFixed(2)})`; // Using black for premium dark-on-light look
-      ctx.fill();
-    }
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+(function initPageFade() {
+  document.body.style.opacity = "0";
+  document.body.style.transition = "opacity 0.35s ease";
+  window.addEventListener("load", () => {
+    document.body.style.opacity = "1";
   });
-
-  window.addEventListener('resize', () => { resize(); createParticles(); });
-
-  resize();
-  createParticles();
-  draw();
 })();
