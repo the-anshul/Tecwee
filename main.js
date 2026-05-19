@@ -108,11 +108,68 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Login failed");
 
-      btn.textContent = "Welcome back";
-      btn.style.background = "#006970";
+      if (data.user && data.user.role === "admin") {
+        localStorage.setItem("tecweeToken", data.token);
+        localStorage.setItem("tecweeUser", JSON.stringify(data.user));
+        btn.textContent = "Opening dashboard";
+        window.location.href = "admin.html";
+        return;
+      }
+
+      btn.textContent = "Admin access required";
+      btn.style.background = "#ba1a1a";
       form.reset();
     } catch (error) {
       console.error("Login error", error);
+      btn.textContent = error.message;
+      btn.style.background = "#ba1a1a";
+    } finally {
+      window.setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = "";
+        btn.disabled = false;
+      }, 2400);
+    }
+  });
+})();
+
+(function initRegisterForm() {
+  const form = document.getElementById("registerForm");
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    const password = document.getElementById("registerPassword").value;
+    const confirmPassword = document.getElementById("registerConfirmPassword").value;
+
+    btn.disabled = true;
+    btn.textContent = "Creating account...";
+
+    try {
+      if (password !== confirmPassword) throw new Error("Passwords do not match");
+
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("registerEmail").value,
+          password,
+          confirmPassword,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Registration failed");
+
+      btn.textContent = "Account created";
+      btn.style.background = "#006970";
+      form.reset();
+      window.setTimeout(() => {
+        window.location.href = "login.html";
+      }, 900);
+    } catch (error) {
+      console.error("Register error", error);
       btn.textContent = error.message;
       btn.style.background = "#ba1a1a";
     } finally {

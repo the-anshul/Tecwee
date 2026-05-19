@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In | Tecwee</title>
-  <meta name="description" content="Sign in to the Tecwee client portal." />
+  <title>Register | Tecwee</title>
+  <meta name="description" content="Create a Tecwee client portal account." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -31,15 +31,15 @@
   <section class="login-section">
     <div class="login-box reveal">
       <div class="login-logo">Tecwee Client Portal</div>
-      <h1 class="login-title">Welcome back</h1>
-      <p class="login-sub">Sign in to manage support tickets, services and account details.</p>
-      <form class="login-form" id="loginForm">
-        <div class="form-group"><label for="loginEmail">Email address</label><input type="email" id="loginEmail" placeholder="you@company.com" required /></div>
-        <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" placeholder="Password" required /></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;min-height:50px;margin-top:8px;">Sign in</button>
+      <h1 class="login-title">Create account</h1>
+      <p class="login-sub">Register for client access. Admin access is enabled separately by Tecwee.</p>
+      <form class="login-form" id="registerForm">
+        <div class="form-group"><label for="registerEmail">Email address</label><input type="email" id="registerEmail" placeholder="you@company.com" autocomplete="email" required /></div>
+        <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" placeholder="Minimum 8 characters" autocomplete="new-password" minlength="8" required /></div>
+        <div class="form-group"><label for="registerConfirmPassword">Confirm password</label><input type="password" id="registerConfirmPassword" placeholder="Repeat password" autocomplete="new-password" minlength="8" required /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;min-height:50px;margin-top:8px;">Create account</button>
       </form>
-      <p class="login-footer">No account yet? <a href="register.html">Create one</a></p>
-      <p class="login-footer login-footer-note">Need admin access? Register first, then ask Tecwee to enable admin role.</p>
+      <p class="login-footer">Already registered? <a href="login.html">Sign in</a></p>
     </div>
   </section>
 

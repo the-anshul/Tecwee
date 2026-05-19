@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin CRM | Tecwee</title>
+  <meta name="description" content="Tecwee admin CRM analytics dashboard." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar">
+    <a href="index.html" class="admin-brand">
+      <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+    </a>
+    <nav class="admin-nav" aria-label="Admin navigation">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#records">Records</a>
+    </nav>
+    <button class="btn btn-secondary admin-logout" id="logoutBtn" type="button">Logout</button>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <span class="tag"><span class="tag-dot"></span>Admin CRM</span>
+        <h1>Insights dashboard</h1>
+        <p id="adminSubtitle">Loading Tecwee CRM activity...</p>
+      </div>
+      <div class="admin-user">
+        <span id="adminEmail">Admin</span>
+        <button class="btn btn-primary" id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </header>
+
+    <section class="admin-alert" id="adminAlert" hidden></section>
+
+    <section class="admin-kpis" id="overview" aria-label="CRM KPIs">
+      <article class="admin-card kpi-card"><span>Total records</span><strong id="kpiTotal">0</strong></article>
+      <article class="admin-card kpi-card"><span>New leads</span><strong id="kpiNew">0</strong></article>
+      <article class="admin-card kpi-card"><span>Open support</span><strong id="kpiSupport">0</strong></article>
+      <article class="admin-card kpi-card"><span>Won leads</span><strong id="kpiWon">0</strong></article>
+      <article class="admin-card kpi-card"><span>Stale follow-ups</span><strong id="kpiStale">0</strong></article>
+    </section>
+
+    <section class="admin-grid" id="pipeline">
+      <article class="admin-card">
+        <div class="admin-card-head">
+          <h2>Lead funnel</h2>
+          <span>Sales follow-up</span>
+        </div>
+        <div class="bar-list" id="leadFunnel"></div>
+      </article>
+      <article class="admin-card">
+        <div class="admin-card-head">
+          <h2>Daily trend</h2>
+          <span>Last 7 days</span>
+        </div>
+        <div class="trend-list" id="dailyTrend"></div>
+      </article>
+      <article class="admin-card">
+        <div class="admin-card-head">
+          <h2>Hot subjects</h2>
+          <span>Top inquiry themes</span>
+        </div>
+        <div class="compact-list" id="subjectBreakdown"></div>
+      </article>
+      <article class="admin-card">
+        <div class="admin-card-head">
+          <h2>Stale queue</h2>
+          <span>Needs action</span>
+        </div>
+        <div class="compact-list" id="staleList"></div>
+      </article>
+    </section>
+
+    <section class="admin-records" id="records">
+      <div class="admin-card records-card">
+        <div class="records-toolbar">
+          <div>
+            <h2>CRM records</h2>
+            <p>Filter, inspect and update lead/support records.</p>
+          </div>
+          <div class="records-filters">
+            <input id="searchInput" type="search" placeholder="Search records" />
+            <select id="typeFilter" aria-label="Record type">
+              <option value="">All types</option>
+              <option value="lead">Leads</option>
+              <option value="support">Support</option>
+            </select>
+            <select id="statusFilter" aria-label="Status">
+              <option value="">All statuses</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="records-layout">
+          <div class="records-table-wrap">
+            <table class="records-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody id="recordsBody"></tbody>
+            </table>
+            <div class="empty-state" id="emptyState" hidden>No CRM records found.</div>
+          </div>
+
+          <aside class="record-detail" id="recordDetail">
+            <div class="empty-state">Select a record to view details.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/admin.js"></script>
+</body>
+</html>
