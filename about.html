@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us | Tecwee</title>
-  <meta name="description" content="Learn about Tecwee — our story, mission, and the team behind your IT solutions." />
+  <title>Company | Tecwee</title>
+  <meta name="description" content="Learn how Tecwee delivers secure, reliable and clear IT support for growing businesses." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">Tecwee</a>
+      <a href="index.html" class="nav-logo">
+        <picture>
+          <source srcset="tecwee_logo.png" media="(prefers-color-scheme: dark)">
+          <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+        </picture>
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link active">Company</a></li>
@@ -19,119 +23,70 @@
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Sign in</a>
-        <a href="contact.html" class="btn btn-primary">Get started</a>
-      </div>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-actions"><a href="login.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-tech">Get started</a></div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <section class="hero" style="padding-bottom: 0;">
-    <div class="container" style="max-width: 720px;">
-      <div class="hero-eyebrow">
-        <span class="tag"><span class="tag-dot"></span>Who we are</span>
-      </div>
-      <h1 class="hero-title" style="font-size: clamp(2.2rem,5vw,3.8rem);">Built for <span class="accent">business,</span><br>focused on people.</h1>
-      <p class="hero-desc">Tecwee was founded with a simple mission: make IT simple, reliable, and accessible for businesses of every size.</p>
+  <section class="page-hero">
+    <div class="container">
+      <span class="tag"><span class="tag-dot"></span>Company</span>
+      <h1 class="hero-title">Built for business, <span>focused on trust.</span></h1>
+      <p class="hero-desc">Tecwee exists to make day-to-day technology feel dependable. We combine fast support, security hygiene and clear communication so teams can work without technical drag.</p>
     </div>
   </section>
 
-  <!-- About Split -->
   <section class="about">
     <div class="container">
-      <div class="about-visual reveal" style="position: relative; overflow: hidden;">
-        <canvas id="aboutCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+      <div class="about-visual reveal">
+        <canvas id="aboutCanvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
       </div>
-      <div>
-        <span class="tag about-tag"><span class="tag-dot"></span>Our story</span>
-        <h2 class="about-title">Why choose Tecwee?</h2>
-        <p class="about-desc">We deliver excellence in every byte. Our certified professionals bring decades of combined experience to keep your business running smoothly, securely, and efficiently.</p>
+      <div class="about-content reveal">
+        <span class="section-eyebrow">Our operating model</span>
+        <h2 class="about-title">No jargon, no loose ends, no mystery tickets.</h2>
+        <p class="about-desc">We treat support as infrastructure. Every setup, migration, recovery and fix should leave your business easier to run than before.</p>
         <ul class="about-list">
-          <li class="about-list-item">
-            <span class="about-check">✓</span>
-            <span><strong>Fast response:</strong> Average 15-minute response for critical issues</span>
-          </li>
-          <li class="about-list-item">
-            <span class="about-check">✓</span>
-            <span><strong>Enterprise security:</strong> State-of-the-art protection for all your data</span>
-          </li>
-          <li class="about-list-item">
-            <span class="about-check">✓</span>
-            <span><strong>Proactive monitoring:</strong> We catch problems before they affect your work</span>
-          </li>
-          <li class="about-list-item">
-            <span class="about-check">✓</span>
-            <span><strong>No jargon:</strong> Clear communication at every step</span>
-          </li>
+          <li class="about-list-item"><span class="about-check">check</span><span><strong>Fast triage:</strong> critical requests get clear priority and visible next steps.</span></li>
+          <li class="about-list-item"><span class="about-check">check</span><span><strong>Security baseline:</strong> access, firewall, backup and endpoint protection are reviewed together.</span></li>
+          <li class="about-list-item"><span class="about-check">check</span><span><strong>Proactive monitoring:</strong> preventable issues are surfaced before they become business interruptions.</span></li>
+          <li class="about-list-item"><span class="about-check">check</span><span><strong>Plain updates:</strong> stakeholders know what happened, what changed and what comes next.</span></li>
         </ul>
         <a href="services.html" class="btn btn-primary">See our services</a>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
   <section class="stats">
     <div class="container">
       <div class="stats-grid">
-        <div class="reveal">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Clients served</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">99%</div>
-          <div class="stat-label">Uptime delivered</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">15m</div>
-          <div class="stat-label">Avg. response time</div>
-        </div>
-        <div class="reveal">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">Year established</div>
-        </div>
+        <div class="reveal"><div class="stat-num">500+</div><div class="stat-label">Support actions</div></div>
+        <div class="reveal"><div class="stat-num">99.9%</div><div class="stat-label">Uptime target</div></div>
+        <div class="reveal"><div class="stat-num">15m</div><div class="stat-label">Critical response</div></div>
+        <div class="reveal"><div class="stat-num">4</div><div class="stat-label">Core disciplines</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="features" style="background: var(--neutral-100);">
+  <section class="features">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Our values</span>
-        <h2 class="section-title">What drives us every day</h2>
+        <span class="section-eyebrow">Values</span>
+        <h2 class="section-title">The standards behind the support desk.</h2>
       </div>
       <div class="features-grid">
-        <div class="feature-card reveal" style="background: var(--white);">
-          <div class="feature-icon">🤝</div>
-          <h3>Partnership first</h3>
-          <p>We treat your business like our own — invested in your success long term.</p>
-        </div>
-        <div class="feature-card reveal" style="background: var(--white);">
-          <div class="feature-icon">🎯</div>
-          <h3>Results focused</h3>
-          <p>Clear goals, measurable outcomes. We don't just fix problems — we prevent them.</p>
-        </div>
-        <div class="feature-card reveal" style="background: var(--white);">
-          <div class="feature-icon">💬</div>
-          <h3>Clear communication</h3>
-          <p>No jargon. Plain language updates at every stage of the work we do.</p>
-        </div>
+        <article class="feature-card reveal"><div class="feature-icon">OWN</div><h3>Ownership</h3><p>We stay with the issue until the user, system and business impact are all understood.</p></article>
+        <article class="feature-card reveal"><div class="feature-icon">CLR</div><h3>Clarity</h3><p>Every recommendation is practical, prioritised and explained in business language.</p></article>
+        <article class="feature-card reveal"><div class="feature-icon">SEC</div><h3>Security</h3><p>Every project is checked against access, recovery and operational risk.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
-        <h2 class="cta-title">Let's work together</h2>
-        <p class="cta-desc">Get in touch for a free consultation and see how Tecwee can support your business.</p>
-        <div class="cta-actions">
-          <a href="contact.html" class="btn btn-white btn-lg">Contact us</a>
-          <a href="services.html" class="btn btn-dark-outline btn-lg">View services</a>
-        </div>
+        <h2 class="cta-title">Let us review your current setup.</h2>
+        <p class="cta-desc">A short consultation is enough to identify the biggest IT risks and easiest wins.</p>
+        <div class="cta-actions"><a href="contact.html" class="btn btn-tech btn-lg">Contact us</a><a href="pricing.html" class="btn btn-dark-outline btn-lg">View plans</a></div>
       </div>
     </div>
   </section>
@@ -139,46 +94,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div>
-          <div class="footer-brand-name">Tecwee</div>
-          <p class="footer-brand-desc">Professional IT solutions for businesses of all sizes. Reliable, fast, and always available.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Services</div>
-          <div class="footer-links">
-            <a href="services.html">System Setup</a>
-            <a href="services.html">Security</a>
-            <a href="services.html">Networking</a>
-            <a href="services.html">Data Backup</a>
-            <a href="services.html">Remote Support</a>
-            <a href="services.html">Web Design & Deployment</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Company</div>
-          <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="login.html">Client Portal</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Connect</div>
-          <div class="footer-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-          </div>
-        </div>
+        <div><div class="footer-brand-name">Tecwee</div><p class="footer-brand-desc">Trust-first IT solutions for secure, reliable business operations.</p></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html">System Setup</a><a href="services.html">Security</a><a href="services.html">Networking</a><a href="services.html">Data Backup</a></div></div>
+        <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="login.html">Client Portal</a></div></div>
+        <div><div class="footer-col-title">Connect</div><div class="footer-links"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Instagram</a></div></div>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Tecwee. All rights reserved.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-link">LinkedIn</a>
-          <a href="#" class="social-link">Twitter</a>
-          <a href="#" class="social-link">Instagram</a>
-        </div>
-      </div>
+      <div class="footer-bottom"><p class="footer-copy">© 2026 Tecwee. All rights reserved.</p><div class="footer-socials"><a href="#" class="social-link">LinkedIn</a><a href="#" class="social-link">Twitter</a><a href="#" class="social-link">Instagram</a></div></div>
     </div>
   </footer>
 

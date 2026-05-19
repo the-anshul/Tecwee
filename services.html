@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services | Tecwee</title>
-  <meta name="description" content="Comprehensive IT services — system setup, security, networking, data backup, remote support and hardware upgrades." />
+  <title>Services | Tecwee</title>
+  <meta name="description" content="Tecwee IT services including setup, security, networking, data backup, remote support and web deployment." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">Tecwee</a>
+      <a href="index.html" class="nav-logo">
+        <picture>
+          <source srcset="tecwee_logo.png" media="(prefers-color-scheme: dark)">
+          <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+        </picture>
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link">Company</a></li>
@@ -19,174 +23,94 @@
         <li><a href="services.html" class="nav-link active">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Sign in</a>
-        <a href="contact.html" class="btn btn-primary">Get started</a>
-      </div>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-actions"><a href="login.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-tech">Get started</a></div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <section class="hero" style="padding-bottom: 0;">
-    <div class="container" style="max-width: 720px;">
-      <div class="hero-eyebrow">
-        <span class="tag"><span class="tag-dot"></span>What we offer</span>
-      </div>
-      <h1 class="hero-title" style="font-size: clamp(2.2rem,5vw,3.8rem);">Our <span class="accent">Services</span></h1>
-      <p class="hero-desc">Comprehensive IT solutions designed to power your business growth — from first setup to ongoing support.</p>
+  <section class="page-hero center">
+    <div class="container">
+      <span class="tag"><span class="tag-dot"></span>Services</span>
+      <h1 class="hero-title">IT support modules for <span>secure growth.</span></h1>
+      <p class="hero-desc">Choose one service or combine them into a managed support plan. Each module is designed around business continuity, speed and clean implementation.</p>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section class="services" style="background: var(--white);">
+  <section class="services">
     <div class="container">
       <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon">🖥️</div>
+        <article class="service-card reveal">
+          <div class="service-icon">SYS</div>
           <h3>System Setup & Maintenance</h3>
-          <p>Clean Windows installations, user account management, disk organisation and driver updates.</p>
-          <ul class="service-list">
-            <li>Clean Windows installations</li>
-            <li>User account management</li>
-            <li>Disk space organisation</li>
-            <li>Driver updates & installations</li>
-          </ul>
-          <a href="contact.html" class="service-link">Request Setup</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🛡️</div>
+          <p>Clean device builds, user accounts, driver updates and routine maintenance for reliable workstations.</p>
+          <ul class="service-list"><li>Clean OS installations</li><li>User account management</li><li>Disk organisation</li><li>Driver and software updates</li></ul>
+          <a href="contact.html" class="service-link">Request setup</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">SEC</div>
           <h3>Security & Safety</h3>
-          <p>Enterprise-level protection including antivirus, firewall config, and data encryption.</p>
-          <ul class="service-list">
-            <li>Antivirus installation</li>
-            <li>Firewall configuration</li>
-            <li>Data encryption</li>
-            <li>Safe browsing practices</li>
-          </ul>
-          <a href="contact.html" class="service-link">Secure Now</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🌐</div>
+          <p>Endpoint protection, firewall configuration, encryption and safer operating practices.</p>
+          <ul class="service-list"><li>Antivirus installation</li><li>Firewall configuration</li><li>Data encryption</li><li>Safe browsing guidance</li></ul>
+          <a href="contact.html" class="service-link">Secure now</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">NET</div>
           <h3>Network Solutions</h3>
-          <p>Wi-Fi setup, router configuration, troubleshooting and guest network setup.</p>
-          <ul class="service-list">
-            <li>Wi-Fi setup & optimisation</li>
-            <li>Router configuration</li>
-            <li>Network troubleshooting</li>
-            <li>Guest network setup</li>
-          </ul>
-          <a href="contact.html" class="service-link">Fix Network</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">💾</div>
+          <p>Stable Wi-Fi, router configuration, troubleshooting and guest network setup.</p>
+          <ul class="service-list"><li>Wi-Fi optimisation</li><li>Router setup</li><li>Network troubleshooting</li><li>Guest network controls</li></ul>
+          <a href="contact.html" class="service-link">Fix network</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">BKP</div>
           <h3>Data Backup & Recovery</h3>
-          <p>Automated backups, cloud storage solutions, and crash recovery so you never lose data.</p>
-          <ul class="service-list">
-            <li>Automated backups</li>
-            <li>Cloud storage solutions</li>
-            <li>Data recovery from crash</li>
-            <li>File archiving</li>
-          </ul>
-          <a href="contact.html" class="service-link">Backup Data</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">🆘</div>
+          <p>Automated backups, cloud storage and recovery planning so business data stays recoverable.</p>
+          <ul class="service-list"><li>Automated backup jobs</li><li>Cloud storage setup</li><li>Crash recovery</li><li>File archiving</li></ul>
+          <a href="contact.html" class="service-link">Backup data</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">RMT</div>
           <h3>Remote Support</h3>
-          <p>Instant remote assistance, software troubleshooting, email config, and quick how-to guidance.</p>
-          <ul class="service-list">
-            <li>Instant remote assistance</li>
-            <li>Software troubleshooting</li>
-            <li>Email configuration</li>
-            <li>Quick how-to guidance</li>
-          </ul>
-          <a href="contact.html" class="service-link">Get Support</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">⚙️</div>
+          <p>Quick help for software issues, email configuration, access problems and user guidance.</p>
+          <ul class="service-list"><li>Remote assistance</li><li>Software troubleshooting</li><li>Email configuration</li><li>How-to guidance</li></ul>
+          <a href="contact.html" class="service-link">Get support</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">HRD</div>
           <h3>Hardware Upgrades</h3>
-          <p>RAM & SSD upgrades, printer setup, peripheral installation, and hardware diagnostics.</p>
-          <ul class="service-list">
-            <li>RAM & SSD upgrades</li>
-            <li>Printer setup</li>
-            <li>Peripheral installation</li>
-            <li>Hardware diagnostics</li>
-          </ul>
-          <a href="contact.html" class="service-link">Upgrade Now</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">💻</div>
+          <p>RAM, SSD, printer, peripheral and diagnostics support for teams that need dependable equipment.</p>
+          <ul class="service-list"><li>RAM and SSD upgrades</li><li>Printer setup</li><li>Peripheral installation</li><li>Hardware diagnostics</li></ul>
+          <a href="contact.html" class="service-link">Upgrade now</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon">WEB</div>
           <h3>Web Design & Deployment</h3>
-          <p>Custom website designing, building, and seamless deployments for your business.</p>
-          <ul class="service-list">
-            <li>Responsive Web Design</li>
-            <li>Custom Web Development</li>
-            <li>Hosting & Deployment</li>
-            <li>Website Maintenance</li>
-          </ul>
-          <a href="contact.html" class="service-link">Start Project</a>
-        </div>
+          <p>Responsive websites, hosting, deployment and maintenance for professional digital presence.</p>
+          <ul class="service-list"><li>Responsive web design</li><li>Custom development</li><li>Hosting and deployment</li><li>Website maintenance</li></ul>
+          <a href="contact.html" class="service-link">Start project</a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
         <h2 class="cta-title">Not sure what you need?</h2>
-        <p class="cta-desc">Talk to our team — we'll assess your setup and recommend the right solution.</p>
-        <div class="cta-actions">
-          <a href="contact.html" class="btn btn-white btn-lg">Contact us</a>
-        </div>
+        <p class="cta-desc">We will assess your setup and recommend the most practical service path.</p>
+        <div class="cta-actions"><a href="contact.html" class="btn btn-tech btn-lg">Talk to Tecwee</a></div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div>
-          <div class="footer-brand-name">Tecwee</div>
-          <p class="footer-brand-desc">Professional IT solutions for businesses of all sizes. Reliable, fast, and always available.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Services</div>
-          <div class="footer-links">
-            <a href="services.html">System Setup</a>
-            <a href="services.html">Security</a>
-            <a href="services.html">Networking</a>
-            <a href="services.html">Data Backup</a>
-            <a href="services.html">Remote Support</a>
-            <a href="services.html">Web Design & Deployment</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Company</div>
-          <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="login.html">Client Portal</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Connect</div>
-          <div class="footer-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-          </div>
-        </div>
+        <div><div class="footer-brand-name">Tecwee</div><p class="footer-brand-desc">Trust-first IT solutions for secure, reliable business operations.</p></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html">System Setup</a><a href="services.html">Security</a><a href="services.html">Networking</a><a href="services.html">Data Backup</a></div></div>
+        <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="login.html">Client Portal</a></div></div>
+        <div><div class="footer-col-title">Connect</div><div class="footer-links"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Instagram</a></div></div>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Tecwee. All rights reserved.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-link">LinkedIn</a>
-          <a href="#" class="social-link">Twitter</a>
-          <a href="#" class="social-link">Instagram</a>
-        </div>
-      </div>
+      <div class="footer-bottom"><p class="footer-copy">© 2026 Tecwee. All rights reserved.</p><div class="footer-socials"><a href="#" class="social-link">LinkedIn</a><a href="#" class="social-link">Twitter</a><a href="#" class="social-link">Instagram</a></div></div>
     </div>
   </footer>
 

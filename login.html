@@ -4,49 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign In | Tecwee</title>
-  <meta name="description" content="Sign in to your Tecwee client portal to manage your IT support tickets and services." />
+  <meta name="description" content="Sign in to the Tecwee client portal." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">Tecwee</a>
+      <a href="index.html" class="nav-logo">
+        <picture>
+          <source srcset="tecwee_logo.png" media="(prefers-color-scheme: dark)">
+          <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+        </picture>
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html" class="nav-link">Company</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-primary">Sign in</a>
-      </div>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-actions"><a href="login.html" class="btn btn-primary">Sign in</a></div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
   <section class="login-section">
     <div class="login-box reveal">
-      <div class="login-logo">Tecwee</div>
+      <div class="login-logo">Tecwee Client Portal</div>
       <h1 class="login-title">Welcome back</h1>
-      <p class="login-sub">Sign in to your client portal to manage support tickets and services.</p>
+      <p class="login-sub">Sign in to manage support tickets, services and account details.</p>
       <form class="login-form" id="loginForm">
-        <div class="form-group">
-          <label for="loginEmail">Email address</label>
-          <input type="email" id="loginEmail" placeholder="you@company.com" required />
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:14px; margin-top:8px;">
-          Sign in
-        </button>
+        <div class="form-group"><label for="loginEmail">Email address</label><input type="email" id="loginEmail" placeholder="you@company.com" required /></div>
+        <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" placeholder="Password" required /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;min-height:50px;margin-top:8px;">Sign in</button>
       </form>
-      <p class="login-footer">Don't have an account? <a href="contact.html">Contact us</a></p>
+      <p class="login-footer">Need access? <a href="contact.html">Contact us</a></p>
     </div>
   </section>
 
+  <script src="/animations.js"></script>
   <script src="/main.js"></script>
 </body>
 </html>

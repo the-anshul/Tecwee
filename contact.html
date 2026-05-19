@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Tecwee</title>
-  <meta name="description" content="Get in touch with Tecwee. We're ready to help with all your IT needs." />
+  <title>Contact | Tecwee</title>
+  <meta name="description" content="Contact Tecwee for IT support, security, networking, backup and web deployment help." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">Tecwee</a>
+      <a href="index.html" class="nav-logo">
+        <picture>
+          <source srcset="tecwee_logo.png" media="(prefers-color-scheme: dark)">
+          <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+        </picture>
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="about.html" class="nav-link">Company</a></li>
@@ -19,70 +23,36 @@
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="contact.html" class="nav-link active">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Sign in</a>
-        <a href="contact.html" class="btn btn-primary">Get started</a>
-      </div>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-actions"><a href="login.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-tech">Get started</a></div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <section class="contact" style="position: relative; min-height: calc(100vh - 68px); padding-top: calc(68px + 80px); overflow: hidden;">
-    <canvas id="contactCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
-    <div class="container" style="position: relative; z-index: 1;">
+  <section class="contact">
+    <canvas id="contactCanvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+    <div class="container" style="position:relative;z-index:1;">
       <div class="contact-inner">
         <div class="reveal">
           <span class="tag"><span class="tag-dot"></span>Get in touch</span>
-          <h1 class="contact-title">Let's connect</h1>
-          <p class="contact-desc">Ready to transform your IT infrastructure? Our experts are just a message away. We'll get back to you within one business day.</p>
+          <h1 class="contact-title">Tell us what needs to run better.</h1>
+          <p class="contact-desc">Share your IT issue, project or support goal. We will reply with a practical next step within one business day.</p>
           <div class="contact-items">
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <span>123 Tech Park, Innovation City</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <span>+1 (555) 0100-TECWEE</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">✉️</div>
-              <span>hello@tecwee.com</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🕐</div>
-              <span>Mon–Fri, 9am–6pm</span>
-            </div>
+            <div class="contact-item"><div class="contact-icon">LOC</div><span>123 Tech Park, Innovation City</span></div>
+            <div class="contact-item"><div class="contact-icon">TEL</div><span>+1 (555) 0100-TECWEE</span></div>
+            <div class="contact-item"><div class="contact-icon">EML</div><span>hello@tecwee.com</span></div>
+            <div class="contact-item"><div class="contact-icon">SLA</div><span>Mon-Fri, 9am-6pm</span></div>
           </div>
         </div>
-        <div class="reveal">
-          <form class="contact-form" id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First name</label>
-                <input type="text" id="firstName" placeholder="John" required />
-              </div>
-              <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input type="text" id="lastName" placeholder="Doe" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" id="email" placeholder="john@company.com" required />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" placeholder="How can we help?" />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Tell us about your IT needs..." rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:16px;">
-              <span>Send message</span>
-            </button>
-          </form>
-        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label for="firstName">First name</label><input type="text" id="firstName" placeholder="John" required /></div>
+            <div class="form-group"><label for="lastName">Last name</label><input type="text" id="lastName" placeholder="Doe" required /></div>
+          </div>
+          <div class="form-group"><label for="email">Email address</label><input type="email" id="email" placeholder="john@company.com" required /></div>
+          <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" placeholder="Support, security, network, website..." /></div>
+          <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us about your setup or the issue you want solved..." rows="5" required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;min-height:50px;"><span>Send message</span></button>
+        </form>
       </div>
     </div>
   </section>
@@ -90,46 +60,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div>
-          <div class="footer-brand-name">Tecwee</div>
-          <p class="footer-brand-desc">Professional IT solutions for businesses of all sizes. Reliable, fast, and always available.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Services</div>
-          <div class="footer-links">
-            <a href="services.html">System Setup</a>
-            <a href="services.html">Security</a>
-            <a href="services.html">Networking</a>
-            <a href="services.html">Data Backup</a>
-            <a href="services.html">Remote Support</a>
-            <a href="services.html">Web Design & Deployment</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Company</div>
-          <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="login.html">Client Portal</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Connect</div>
-          <div class="footer-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-          </div>
-        </div>
+        <div><div class="footer-brand-name">Tecwee</div><p class="footer-brand-desc">Trust-first IT solutions for secure, reliable business operations.</p></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html">System Setup</a><a href="services.html">Security</a><a href="services.html">Networking</a><a href="services.html">Data Backup</a></div></div>
+        <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="login.html">Client Portal</a></div></div>
+        <div><div class="footer-col-title">Connect</div><div class="footer-links"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Instagram</a></div></div>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Tecwee. All rights reserved.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-link">LinkedIn</a>
-          <a href="#" class="social-link">Twitter</a>
-          <a href="#" class="social-link">Instagram</a>
-        </div>
-      </div>
+      <div class="footer-bottom"><p class="footer-copy">© 2026 Tecwee. All rights reserved.</p><div class="footer-socials"><a href="#" class="social-link">LinkedIn</a><a href="#" class="social-link">Twitter</a><a href="#" class="social-link">Instagram</a></div></div>
     </div>
   </footer>
 
