@@ -3,17 +3,538 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | Tecwee</title>
-  <meta name="description" content="Tecwee IT services including setup, security, networking, data backup, remote support and web deployment." />
+  <title>Services | Techwee</title>
+  <meta name="description" content="Techwee provides managed IT support, network infrastructure, cybersecurity, website development, custom business applications and cloud backup solutions for SMBs." />
   <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* ── Services page extras ── */
+    .services-intro {
+      padding: calc(var(--nav-h) + 72px) 0 0;
+      background: linear-gradient(135deg, #ffffff 0%, #f7f9fb 70%, #eaffff 100%);
+    }
+
+    .services-hero-inner {
+      text-align: center;
+      max-width: 820px;
+      margin-inline: auto;
+      padding-bottom: 72px;
+    }
+
+    .services-hero-inner .hero-title {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      margin-top: 12px;
+    }
+
+    .services-hero-inner .hero-desc {
+      margin-top: 20px;
+      margin-inline: auto;
+    }
+
+    /* ── Filter tabs ── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 40px 0 64px;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--ease), border-color var(--ease), color var(--ease), transform var(--ease);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--midnight);
+      border-color: var(--midnight);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn .filter-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+    }
+
+    /* ── Main service blocks ── */
+    .service-block {
+      padding: 80px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .service-block:nth-child(even) {
+      background: var(--surface);
+    }
+
+    .service-block-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .service-block-inner.reverse {
+      direction: rtl;
+    }
+
+    .service-block-inner.reverse > * {
+      direction: ltr;
+    }
+
+    .service-block-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--cyan-dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .service-block-label .svc-code {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 240, 255, 0.14);
+      color: var(--cyan-dark);
+    }
+
+    .service-block-title {
+      color: var(--midnight);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 0;
+      margin-bottom: 16px;
+    }
+
+    .service-block-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .service-features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .svc-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: border-color var(--ease), transform var(--ease);
+    }
+
+    .svc-feature-item:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .svc-feature-item::before {
+      content: "";
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+    }
+
+    /* ── Visual panel ── */
+    .service-visual {
+      position: relative;
+      min-height: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .service-visual-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+    }
+
+    .svc-big-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .svc-stat-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .svc-stat {
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .svc-stat-val {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .svc-stat-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* colour themes per service */
+    .svc-theme-it    { background: linear-gradient(135deg, #0a192f 0%, #0d2545 100%); color: #ffffff; }
+    .svc-theme-net   { background: linear-gradient(135deg, #003d52 0%, #005a74 100%); color: #ffffff; }
+    .svc-theme-sec   { background: linear-gradient(135deg, #1a0a2e 0%, #2d0e57 100%); color: #ffffff; }
+    .svc-theme-web   { background: linear-gradient(135deg, #002233 0%, #00374f 100%); color: #ffffff; }
+    .svc-theme-app   { background: linear-gradient(135deg, #0f2010 0%, #1a3d1a 100%); color: #ffffff; }
+    .svc-theme-cloud { background: linear-gradient(135deg, #1a1000 0%, #362200 100%); color: #ffffff; }
+
+    .svc-theme-it .svc-big-icon    { background: rgba(0,240,255,0.18); color: var(--cyan); }
+    .svc-theme-net .svc-big-icon   { background: rgba(0,240,255,0.18); color: var(--cyan); }
+    .svc-theme-sec .svc-big-icon   { background: rgba(180,100,255,0.2); color: #c084fc; }
+    .svc-theme-web .svc-big-icon   { background: rgba(56,189,248,0.2); color: var(--blue); }
+    .svc-theme-app .svc-big-icon   { background: rgba(74,222,128,0.2); color: #4ade80; }
+    .svc-theme-cloud .svc-big-icon { background: rgba(251,191,36,0.2); color: #fbbf24; }
+
+    /* ── Why Choose section ── */
+    .why-section {
+      padding: 96px 0;
+      background: var(--midnight);
+      color: #ffffff;
+    }
+
+    .why-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .why-header .section-eyebrow {
+      color: var(--cyan);
+    }
+
+    .why-header .section-title {
+      color: #ffffff;
+      margin-top: 8px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      transition: border-color var(--ease), transform var(--ease), background var(--ease);
+    }
+
+    .why-card:hover {
+      border-color: rgba(0,240,255,0.35);
+      background: rgba(0,240,255,0.05);
+      transform: translateY(-4px);
+    }
+
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: rgba(0,240,255,0.15);
+      color: var(--cyan);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .why-card h3 {
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    /* ── Overview / Pricing Cards ── */
+    .overview-section {
+      padding: 80px 0 64px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .overview-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 52px;
+    }
+
+    .overview-header .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-top: 6px;
+    }
+
+    .overview-header p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .overview-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 28px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 2px 16px rgba(6,13,26,0.04);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      overflow: hidden;
+    }
+
+    .overview-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,240,255,0.4);
+      box-shadow: 0 16px 40px rgba(6,13,26,0.1);
+    }
+
+    .overview-card:hover::before {
+      opacity: 1;
+    }
+
+    .overview-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0,240,255,0.12);
+      color: var(--cyan-dark);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .overview-card h3 {
+      color: var(--midnight);
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .overview-price {
+      margin-bottom: 12px;
+    }
+
+    .overview-price .price-amount {
+      color: var(--midnight);
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .overview-price .price-period {
+      color: var(--soft);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .overview-card-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .overview-feature-list {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 26px;
+      flex: 1;
+    }
+
+    .overview-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .overview-feature-list li::before {
+      content: "✓";
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0,240,255,0.15);
+      color: var(--cyan-dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .overview-card .btn {
+      width: 100%;
+      margin-top: auto;
+      justify-content: center;
+    }
+
+    .overview-card.featured-card {
+      background: var(--midnight);
+      border-color: var(--midnight);
+      color: #ffffff;
+    }
+
+    .overview-card.featured-card h3 {
+      color: #ffffff;
+    }
+
+    .overview-card.featured-card .overview-price .price-amount {
+      color: var(--cyan);
+    }
+
+    .overview-card.featured-card .overview-price .price-period,
+    .overview-card.featured-card .overview-card-desc {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .overview-card.featured-card .overview-feature-list li {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .overview-card.featured-card .overview-card-badge {
+      background: rgba(0,240,255,0.2);
+      color: var(--cyan);
+    }
+
+    .overview-card.featured-card .overview-feature-list li::before {
+      background: rgba(0,240,255,0.25);
+      color: var(--cyan);
+    }
+
+    .overview-card.featured-card::before {
+      opacity: 1;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .service-block-inner,
+      .service-block-inner.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 40px;
+      }
+
+      .service-visual {
+        min-height: 280px;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .service-features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ── Nav ── -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
         <picture>
           <source srcset="tecwee_logo.png" media="(prefers-color-scheme: dark)">
-          <img src="tecwee_logo_white_bg.png" alt="Tecwee Logo">
+          <img src="tecwee_logo_white_bg.png" alt="Techwee Logo">
         </picture>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -23,98 +544,561 @@
         <li><a href="services.html" class="nav-link active">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-actions"><a href="login.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-tech">Get started</a></div>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Sign in</a>
+        <a href="contact.html" class="btn btn-tech">Get started</a>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <section class="page-hero center">
+  <!-- ── Hero ── -->
+  <section class="services-intro" id="services-top">
     <div class="container">
-      <span class="tag"><span class="tag-dot"></span>Services</span>
-      <h1 class="hero-title">IT support modules for <span>secure growth.</span></h1>
-      <p class="hero-desc">Choose one service or combine them into a managed support plan. Each module is designed around business continuity, speed and clean implementation.</p>
-    </div>
-  </section>
+      <div class="services-hero-inner">
+        <span class="tag"><span class="tag-dot"></span>What we do</span>
+        <h1 class="hero-title">IT solutions built for <span>real business.</span></h1>
+        <p class="hero-desc">From frontline support to cloud infrastructure — every Techwee service is designed to keep your business secure, fast and uninterrupted. Choose one module or combine them into a fully managed plan.</p>
+      </div>
 
-  <section class="services">
-    <div class="container">
-      <div class="services-grid">
-        <article class="service-card reveal">
-          <div class="service-icon">SYS</div>
-          <h3>System Setup & Maintenance</h3>
-          <p>Clean device builds, user accounts, driver updates and routine maintenance for reliable workstations.</p>
-          <ul class="service-list"><li>Clean OS installations</li><li>User account management</li><li>Disk organisation</li><li>Driver and software updates</li></ul>
-          <a href="contact.html" class="service-link">Request setup</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">SEC</div>
-          <h3>Security & Safety</h3>
-          <p>Endpoint protection, firewall configuration, encryption and safer operating practices.</p>
-          <ul class="service-list"><li>Antivirus installation</li><li>Firewall configuration</li><li>Data encryption</li><li>Safe browsing guidance</li></ul>
-          <a href="contact.html" class="service-link">Secure now</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">NET</div>
-          <h3>Network Solutions</h3>
-          <p>Stable Wi-Fi, router configuration, troubleshooting and guest network setup.</p>
-          <ul class="service-list"><li>Wi-Fi optimisation</li><li>Router setup</li><li>Network troubleshooting</li><li>Guest network controls</li></ul>
-          <a href="contact.html" class="service-link">Fix network</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">BKP</div>
-          <h3>Data Backup & Recovery</h3>
-          <p>Automated backups, cloud storage and recovery planning so business data stays recoverable.</p>
-          <ul class="service-list"><li>Automated backup jobs</li><li>Cloud storage setup</li><li>Crash recovery</li><li>File archiving</li></ul>
-          <a href="contact.html" class="service-link">Backup data</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">RMT</div>
-          <h3>Remote Support</h3>
-          <p>Quick help for software issues, email configuration, access problems and user guidance.</p>
-          <ul class="service-list"><li>Remote assistance</li><li>Software troubleshooting</li><li>Email configuration</li><li>How-to guidance</li></ul>
-          <a href="contact.html" class="service-link">Get support</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">HRD</div>
-          <h3>Hardware Upgrades</h3>
-          <p>RAM, SSD, printer, peripheral and diagnostics support for teams that need dependable equipment.</p>
-          <ul class="service-list"><li>RAM and SSD upgrades</li><li>Printer setup</li><li>Peripheral installation</li><li>Hardware diagnostics</li></ul>
-          <a href="contact.html" class="service-link">Upgrade now</a>
-        </article>
-        <article class="service-card reveal">
-          <div class="service-icon">WEB</div>
-          <h3>Web Design & Deployment</h3>
-          <p>Responsive websites, hosting, deployment and maintenance for professional digital presence.</p>
-          <ul class="service-list"><li>Responsive web design</li><li>Custom development</li><li>Hosting and deployment</li><li>Website maintenance</li></ul>
-          <a href="contact.html" class="service-link">Start project</a>
-        </article>
+      <!-- Filter tabs -->
+      <div class="filter-bar" id="filterBar" role="navigation" aria-label="Service categories">
+        <button class="filter-btn active" data-target="all" id="filter-all">
+          <span class="filter-dot"></span>All Services
+        </button>
+        <button class="filter-btn" data-target="svc-it" id="filter-it">Managed IT</button>
+        <button class="filter-btn" data-target="svc-net" id="filter-net">Networking</button>
+        <button class="filter-btn" data-target="svc-sec" id="filter-sec">Cybersecurity</button>
+        <button class="filter-btn" data-target="svc-web" id="filter-web">Web Dev</button>
+        <button class="filter-btn" data-target="svc-app" id="filter-app">Custom Apps</button>
+        <button class="filter-btn" data-target="svc-cloud" id="filter-cloud">Cloud & Backup</button>
       </div>
     </div>
   </section>
 
+  <!-- ══════════════════════════════════
+       Service Overview & Pricing Cards
+  ══════════════════════════════════ -->
+  <section class="overview-section" id="service-overview">
+    <div class="container">
+      <div class="overview-header">
+        <span class="section-eyebrow">Service Overview</span>
+        <h2 class="section-title">Transparent pricing for every need.</h2>
+        <p>No hidden fees. Every plan comes with a free consultation — we'll scope exactly what you need before any commitment.</p>
+      </div>
+      <div class="overview-grid">
+
+        <!-- Card 1: Managed IT -->
+        <article class="overview-card reveal" id="card-it">
+          <div class="overview-card-badge">MSP</div>
+          <h3>Managed IT Support</h3>
+          <div class="overview-price">
+            <span class="price-amount">₹4,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <p class="overview-card-desc">Reliable day-to-day IT support to keep your business running smoothly.</p>
+          <ul class="overview-feature-list">
+            <li>Remote Support</li>
+            <li>System Troubleshooting</li>
+            <li>Software Installation</li>
+            <li>Email Support</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-it">Request a Free Consultation</a>
+        </article>
+
+        <!-- Card 2: Networking -->
+        <article class="overview-card reveal" id="card-net">
+          <div class="overview-card-badge">NET</div>
+          <h3>Networking Solutions</h3>
+          <div class="overview-price">
+            <span class="price-amount">₹9,999</span>
+            <span class="price-period">/project</span>
+          </div>
+          <p class="overview-card-desc">Secure and scalable network setup for offices and growing businesses.</p>
+          <ul class="overview-feature-list">
+            <li>Router &amp; Switch Configuration</li>
+            <li>VLAN Setup</li>
+            <li>VPN Configuration</li>
+            <li>Wi-Fi Optimization</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-net">Request a Free Consultation</a>
+        </article>
+
+        <!-- Card 3: Cybersecurity (featured / highlighted) -->
+        <article class="overview-card featured-card reveal" id="card-sec">
+          <div class="overview-card-badge">SEC</div>
+          <h3>Cybersecurity Services</h3>
+          <div class="overview-price">
+            <span class="price-amount">₹14,999</span>
+            <span class="price-period">starting</span>
+          </div>
+          <p class="overview-card-desc">Protect your business from cyber threats with practical security solutions.</p>
+          <ul class="overview-feature-list">
+            <li>Vulnerability Assessment</li>
+            <li>Security Audit</li>
+            <li>System Hardening</li>
+            <li>Security Awareness Training</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-sec">Request a Free Consultation</a>
+        </article>
+
+        <!-- Card 4: Website Development -->
+        <article class="overview-card reveal" id="card-web">
+          <div class="overview-card-badge">WEB</div>
+          <h3>Website Development</h3>
+          <div class="overview-price">
+            <span class="price-amount">₹14,999</span>
+            <span class="price-period">starting</span>
+          </div>
+          <p class="overview-card-desc">Professional websites designed to attract customers and generate leads.</p>
+          <ul class="overview-feature-list">
+            <li>Business Websites</li>
+            <li>Landing Pages</li>
+            <li>SEO Friendly Design</li>
+            <li>Mobile Responsive</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-web">Request a Free Consultation</a>
+        </article>
+
+        <!-- Card 5: Custom Apps -->
+        <article class="overview-card reveal" id="card-app">
+          <div class="overview-card-badge">APP</div>
+          <h3>Custom Business Applications</h3>
+          <div class="overview-price">
+            <span class="price-amount">Custom</span>
+            <span class="price-period">Pricing</span>
+          </div>
+          <p class="overview-card-desc">Software solutions tailored to your business workflows.</p>
+          <ul class="overview-feature-list">
+            <li>Inventory Systems</li>
+            <li>CRM Solutions</li>
+            <li>Dashboards</li>
+            <li>Internal Portals</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-app">Request a Free Consultation</a>
+        </article>
+
+        <!-- Card 6: Cloud & Backup -->
+        <article class="overview-card reveal" id="card-cloud">
+          <div class="overview-card-badge">CLD</div>
+          <h3>Cloud &amp; Backup Solutions</h3>
+          <div class="overview-price">
+            <span class="price-amount">Custom</span>
+            <span class="price-period">Pricing</span>
+          </div>
+          <p class="overview-card-desc">Keep your business data secure and accessible from anywhere.</p>
+          <ul class="overview-feature-list">
+            <li>Microsoft 365 Setup</li>
+            <li>Cloud Migration</li>
+            <li>Backup Solutions</li>
+            <li>Disaster Recovery Planning</li>
+          </ul>
+          <a href="contact.html" class="btn btn-tech" id="card-cta-cloud">Request a Free Consultation</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 1 — Managed IT Support
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-it" data-service="svc-it">
+    <div class="container">
+      <div class="service-block-inner reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">MSP</span>Managed IT
+          </div>
+          <h2 class="service-block-title">Keep every device, user and system running.</h2>
+          <p class="service-block-desc">Reliable remote and on-site technical assistance designed to minimise downtime and keep your people productive. We handle the IT noise so your team stays focused.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Desktop &amp; Laptop Support</div>
+            <div class="svc-feature-item">Software Installation &amp; Troubleshooting</div>
+            <div class="svc-feature-item">Email Configuration &amp; Support</div>
+            <div class="svc-feature-item">User Management</div>
+            <div class="svc-feature-item">Printer &amp; Peripheral Support</div>
+            <div class="svc-feature-item">Remote Technical Assistance</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-it">Get IT support</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-it">
+            <div class="svc-big-icon">MSP</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">15m</div>
+                <div class="svc-stat-lbl">Response time</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">24/7</div>
+                <div class="svc-stat-lbl">Monitoring</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">99.9%</div>
+                <div class="svc-stat-lbl">Uptime target</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 2 — Network Infrastructure
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-net" data-service="svc-net">
+    <div class="container">
+      <div class="service-block-inner reverse reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">NET</span>Networking
+          </div>
+          <h2 class="service-block-title">Stable, secure networks built for your business.</h2>
+          <p class="service-block-desc">A reliable network is the foundation of everything. We design, deploy and maintain infrastructure tailored to your environment — from a single office to multi-site WAN setups.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Router &amp; Switch Configuration</div>
+            <div class="svc-feature-item">LAN / WAN Setup</div>
+            <div class="svc-feature-item">VLAN Implementation</div>
+            <div class="svc-feature-item">Wi-Fi Deployment &amp; Optimisation</div>
+            <div class="svc-feature-item">VPN Configuration</div>
+            <div class="svc-feature-item">Network Monitoring &amp; Troubleshooting</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-net">Design my network</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-net">
+            <div class="svc-big-icon">NET</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">LAN</div>
+                <div class="svc-stat-lbl">Local area</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">WAN</div>
+                <div class="svc-stat-lbl">Wide area</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--cyan)">VPN</div>
+                <div class="svc-stat-lbl">Secure tunnel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 3 — Cybersecurity
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-sec" data-service="svc-sec">
+    <div class="container">
+      <div class="service-block-inner reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">SEC</span>Cybersecurity
+          </div>
+          <h2 class="service-block-title">Protect your business before threats strike.</h2>
+          <p class="service-block-desc">Practical and affordable security solutions designed for small and medium-sized businesses. We assess, harden and monitor your environment so you stay ahead of the threat landscape.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Vulnerability Assessment</div>
+            <div class="svc-feature-item">Security Audits</div>
+            <div class="svc-feature-item">Endpoint Security</div>
+            <div class="svc-feature-item">System Hardening</div>
+            <div class="svc-feature-item">Security Awareness Training</div>
+            <div class="svc-feature-item">Backup &amp; Recovery Verification</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-sec">Secure my business</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-sec">
+            <div class="svc-big-icon">SEC</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#c084fc">Audit</div>
+                <div class="svc-stat-lbl">Full assessment</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#c084fc">Harden</div>
+                <div class="svc-stat-lbl">System lockdown</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#c084fc">Verify</div>
+                <div class="svc-stat-lbl">Recovery test</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 4 — Website Development
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-web" data-service="svc-web">
+    <div class="container">
+      <div class="service-block-inner reverse reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">WEB</span>Website Development
+          </div>
+          <h2 class="service-block-title">A professional online presence that converts.</h2>
+          <p class="service-block-desc">We build fast, modern websites that help your business attract customers and generate leads — from clean business sites to full-featured landing pages, all optimised for search engines and performance.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Business Websites</div>
+            <div class="svc-feature-item">Landing Pages</div>
+            <div class="svc-feature-item">Portfolio Websites</div>
+            <div class="svc-feature-item">Website Maintenance</div>
+            <div class="svc-feature-item">Performance Optimisation</div>
+            <div class="svc-feature-item">SEO-Friendly Development</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-web">Start a project</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-web">
+            <div class="svc-big-icon">WEB</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--blue)">Fast</div>
+                <div class="svc-stat-lbl">Performance first</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--blue)">SEO</div>
+                <div class="svc-stat-lbl">Search ready</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:var(--blue)">Mobile</div>
+                <div class="svc-stat-lbl">Responsive</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 5 — Custom Business Apps
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-app" data-service="svc-app">
+    <div class="container">
+      <div class="service-block-inner reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">APP</span>Custom Applications
+          </div>
+          <h2 class="service-block-title">Software built around your workflow.</h2>
+          <p class="service-block-desc">Stop forcing your processes into off-the-shelf tools. We build custom software solutions designed around how your business actually operates — streamlining operations and eliminating manual work.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Inventory Management Systems</div>
+            <div class="svc-feature-item">CRM Solutions</div>
+            <div class="svc-feature-item">Internal Portals</div>
+            <div class="svc-feature-item">Business Dashboards</div>
+            <div class="svc-feature-item">Process Automation Tools</div>
+            <div class="svc-feature-item">Custom Workflow Systems</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-app">Discuss my needs</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-app">
+            <div class="svc-big-icon">APP</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#4ade80">CRM</div>
+                <div class="svc-stat-lbl">Relationships</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#4ade80">ERP</div>
+                <div class="svc-stat-lbl">Operations</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#4ade80">Auto</div>
+                <div class="svc-stat-lbl">Automation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Service 6 — Cloud & Backup
+  ══════════════════════════════════ -->
+  <section class="service-block" id="svc-cloud" data-service="svc-cloud">
+    <div class="container">
+      <div class="service-block-inner reverse reveal">
+
+        <div class="service-block-copy">
+          <div class="service-block-label">
+            <span class="svc-code">CLD</span>Cloud &amp; Backup
+          </div>
+          <h2 class="service-block-title">Business continuity you can depend on.</h2>
+          <p class="service-block-desc">Secure cloud services and reliable backup strategies that ensure your business keeps running no matter what happens. From Microsoft 365 deployments to full disaster recovery planning.</p>
+          <div class="service-features-grid">
+            <div class="svc-feature-item">Microsoft 365 Setup</div>
+            <div class="svc-feature-item">Cloud Migration</div>
+            <div class="svc-feature-item">Data Backup Solutions</div>
+            <div class="svc-feature-item">Disaster Recovery Planning</div>
+            <div class="svc-feature-item">Secure File Sharing</div>
+            <div class="svc-feature-item">Cloud Security Configuration</div>
+          </div>
+          <a href="contact.html" class="btn btn-tech" style="margin-top:32px;" id="cta-cloud">Protect my data</a>
+        </div>
+
+        <div class="service-visual">
+          <div class="service-visual-bg svc-theme-cloud">
+            <div class="svc-big-icon">CLD</div>
+            <div class="svc-stat-row">
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#fbbf24">M365</div>
+                <div class="svc-stat-lbl">Microsoft cloud</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#fbbf24">3-2-1</div>
+                <div class="svc-stat-lbl">Backup rule</div>
+              </div>
+              <div class="svc-stat">
+                <div class="svc-stat-val" style="color:#fbbf24">RTO</div>
+                <div class="svc-stat-lbl">Fast recovery</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       Why Choose Techwee
+  ══════════════════════════════════ -->
+  <section class="why-section" id="why-techwee">
+    <div class="container">
+      <div class="why-header">
+        <span class="section-eyebrow">Why Techwee</span>
+        <h2 class="section-title">The IT partner built for small businesses.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal" id="why-affordable">
+          <div class="why-icon">💰</div>
+          <h3>Affordable for SMBs</h3>
+          <p>Enterprise-grade solutions at pricing designed for small and medium-sized businesses. No hidden fees, no surprises.</p>
+        </div>
+        <div class="why-card reveal" id="why-fast">
+          <div class="why-icon">⚡</div>
+          <h3>Fast Response Time</h3>
+          <p>Critical issues get a response within 15 minutes. We understand that every minute of downtime costs your business.</p>
+        </div>
+        <div class="why-card reveal" id="why-experienced">
+          <div class="why-icon">🛡️</div>
+          <h3>Experienced Technical Support</h3>
+          <p>Our team brings deep expertise across networking, security, cloud and development — not generalist helpdesk agents.</p>
+        </div>
+        <div class="why-card reveal" id="why-security">
+          <div class="why-icon">🔒</div>
+          <h3>Security-First Approach</h3>
+          <p>Security is embedded into every service we deliver, not bolted on as an afterthought. Your data stays protected.</p>
+        </div>
+        <div class="why-card reveal" id="why-custom">
+          <div class="why-icon">🎯</div>
+          <h3>Customised Service Plans</h3>
+          <p>Mix and match services into a plan that fits your exact needs. Pay for what you use, scale as you grow.</p>
+        </div>
+        <div class="why-card reveal" id="why-partnership">
+          <div class="why-icon">🤝</div>
+          <h3>Long-Term Partnership</h3>
+          <p>We build ongoing relationships, not one-off contracts. Your success is our benchmark for how well we are doing our job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
+        <span class="tag"><span class="tag-dot"></span>Ready to start</span>
         <h2 class="cta-title">Not sure what you need?</h2>
-        <p class="cta-desc">We will assess your setup and recommend the most practical service path.</p>
-        <div class="cta-actions"><a href="contact.html" class="btn btn-tech btn-lg">Talk to Tecwee</a></div>
+        <p class="cta-desc">We will assess your current setup and recommend the most practical service path — no jargon, no pushy sales, just clear advice.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-tech btn-lg" id="cta-main">Talk to Techwee</a>
+          <a href="pricing.html" class="btn btn-dark-outline btn-lg" id="cta-pricing">View pricing</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ── Footer ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div><div class="footer-brand-name">Tecwee</div><p class="footer-brand-desc">Trust-first IT solutions for secure, reliable business operations.</p></div>
-        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="services.html">System Setup</a><a href="services.html">Security</a><a href="services.html">Networking</a><a href="services.html">Data Backup</a></div></div>
+        <div><div class="footer-brand-name">Techwee</div><p class="footer-brand-desc">Trust-first IT solutions for secure, reliable business operations.</p></div>
+        <div><div class="footer-col-title">Services</div><div class="footer-links"><a href="#svc-it">Managed IT</a><a href="#svc-net">Networking</a><a href="#svc-sec">Cybersecurity</a><a href="#svc-web">Web Development</a><a href="#svc-app">Custom Apps</a><a href="#svc-cloud">Cloud &amp; Backup</a></div></div>
         <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="login.html">Client Portal</a></div></div>
         <div><div class="footer-col-title">Connect</div><div class="footer-links"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Instagram</a></div></div>
       </div>
-      <div class="footer-bottom"><p class="footer-copy">© 2026 Tecwee. All rights reserved.</p><div class="footer-socials"><a href="#" class="social-link">LinkedIn</a><a href="#" class="social-link">Twitter</a><a href="#" class="social-link">Instagram</a></div></div>
+      <div class="footer-bottom"><p class="footer-copy">© 2026 Techwee. All rights reserved.</p><div class="footer-socials"><a href="#" class="social-link">LinkedIn</a><a href="#" class="social-link">Twitter</a><a href="#" class="social-link">Instagram</a></div></div>
     </div>
   </footer>
 
   <script src="/animations.js"></script>
   <script src="/main.js"></script>
+  <script>
+    // ── Filter tab behaviour ──
+    const filterBar = document.getElementById('filterBar');
+    const allSections = document.querySelectorAll('[data-service]');
+
+    filterBar.addEventListener('click', function (e) {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      // Update active state
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const target = btn.dataset.target;
+
+      allSections.forEach(section => {
+        if (target === 'all' || section.dataset.service === target) {
+          section.style.display = '';
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(16px)';
+          requestAnimationFrame(() => {
+            section.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+          });
+        } else {
+          section.style.display = 'none';
+        }
+      });
+
+      if (target !== 'all') {
+        const el = document.getElementById(target);
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
