@@ -302,10 +302,10 @@ button {
 .hero-title {
   max-width: 820px;
   color: var(--midnight);
-  font-size: 6.5rem;
+  font-size: 3.8rem;
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .hero-central-title span,
@@ -619,7 +619,7 @@ button {
   gap: 18px;
 }
 
-.stats-grid > div {
+.stats-grid>div {
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
@@ -649,8 +649,8 @@ button {
     var(--midnight);
 }
 
-.about-content > .btn,
-.about-list + .btn {
+.about-content>.btn,
+.about-list+.btn {
   margin-top: 30px;
 }
 
@@ -783,7 +783,7 @@ button {
   z-index: 0;
 }
 
-.cta-box > * {
+.cta-box>* {
   position: relative;
   z-index: 1;
 }
@@ -901,7 +901,7 @@ button {
   text-align: center;
 }
 
-.login-footer + .login-footer {
+.login-footer+.login-footer {
   margin-top: 8px;
 }
 
@@ -1442,6 +1442,7 @@ button {
   from {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
+
   to {
     transform: translate3d(-28px, -18px, 0) rotate(9deg);
   }
@@ -1667,6 +1668,7 @@ button {
 }
 
 @media (max-width: 520px) {
+
   .logos,
   .features,
   .steps,
@@ -1691,6 +1693,7 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
