@@ -1,0 +1,13 @@
+# Tecwee robots.txt
+# Allow all search engines to crawl public pages
+User-agent: *
+Allow: /
+
+# Disallow private/backend pages from being indexed
+Disallow: /admin.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://tecwee.vercel.app/sitemap.xml
